@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combined Morning Routine — Tendon, Balance, SLSEC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f1e8;
+    --bg-alt: #ebe5d6;
+    --ink: #1a1815;
+    --ink-soft: #4a4640;
+    --ink-mute: #8a847a;
+    --rule: #d9d2c0;
+    --accent: #b8421f;
+    --accent-soft: #d96a47;
+    --accent-bg: #f4e4dc;
+    --accent2: #2d5a3f;
+    --accent2-bg: #e2ebe4;
+    --paper: #fdfaf3;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184,66,31,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(45,90,63,0.04) 0%, transparent 40%);
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* Header */
+  .header { margin-bottom: 40px; border-bottom: 1px solid var(--rule); padding-bottom: 32px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(36px, 6vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    font-variation-settings: 'opsz' 144;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .subtitle {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 580px;
+    line-height: 1.6;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--rule);
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .legend-dot.tendon { background: var(--accent); }
+  .legend-dot.balance { background: var(--accent2); }
+  .legend-dot.shared { background: linear-gradient(90deg, var(--accent) 50%, var(--accent2) 50%); }
+
+  /* Week tabs */
+  .week-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 32px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .week-tab {
+    flex: 1;
+    padding: 18px 16px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    position: relative;
+  }
+  .week-tab:last-child { border-right: none; }
+  .week-tab:hover { background: var(--bg-alt); color: var(--ink); }
+  .week-tab .num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .week-tab .label {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .week-tab.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .week-tab.active .num { color: var(--accent-soft); }
+
+  /* Week panel */
+  .week-panel { display: none; animation: fadeIn 0.3s ease; }
+  .week-panel.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Week header */
+  .week-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    padding: 32px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .week-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--accent) 0%, var(--accent) 50%, var(--accent2) 50%, var(--accent2) 100%);
+  }
+  .week-theme {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .week-theme em { font-style: italic; color: var(--accent); }
+  .week-focus {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 540px;
+  }
+  .week-time {
+    font-family: var(--mono);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .week-time .num {
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .week-time .unit {
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Section blocks */
+  .sections { display: flex; flex-direction: column; gap: 12px; }
+
+  .section {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    border-left: 3px solid var(--rule);
+  }
+  .section.type-tendon { border-left-color: var(--accent); }
+  .section.type-balance { border-left-color: var(--accent2); }
+  .section.type-shared { border-left-color: var(--ink-mute); }
+  .section:hover { border-color: var(--ink-mute); }
+  .section.type-tendon:hover { border-left-color: var(--accent); }
+  .section.type-balance:hover { border-left-color: var(--accent2); }
+
+  .section-header {
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 48px 1fr auto auto;
+    gap: 20px;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .section-num::before {
+    content: '0';
+    color: var(--ink-mute);
+  }
+  .type-balance .section-num { color: var(--accent2); }
+  .type-shared .section-num { color: var(--ink); }
+
+  .section-title-block { min-width: 0; }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .section-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+  }
+  .section-tag.tendon { background: var(--accent-bg); color: var(--accent); }
+  .section-tag.balance { background: var(--accent2-bg); color: var(--accent2); }
+  .section-purpose {
+    font-size: 13px;
+    color: var(--ink-mute);
+    line-height: 1.4;
+  }
+
+  .section-time {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--bg-alt);
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .section-toggle {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-mute);
+    transition: transform 0.2s ease;
+  }
+  .section.expanded .section-toggle { transform: rotate(45deg); color: var(--accent); }
+
+  .section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .section.expanded .section-body { max-height: 900px; }
+
+  .section-body-inner {
+    padding: 0 24px 24px 92px;
+    border-top: 1px dashed var(--rule);
+    margin-top: 0;
+    padding-top: 20px;
+  }
+
+  .exercise {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .exercise:last-child { border-bottom: none; }
+
+  .exercise-mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    padding-top: 3px;
+    min-width: 24px;
+  }
+  .type-balance .exercise-mark { color: var(--accent2); }
+
+  .exercise-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .exercise-detail {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .exercise-detail .spec {
+    font-family: var(--mono);
+    background: var(--accent-bg);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 4px;
+    display: inline-block;
+  }
+  .type-balance .exercise-detail .spec {
+    background: var(--accent2-bg);
+    color: var(--accent2);
+  }
+  .exercise-tip {
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-style: italic;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* Principles */
+  .principles {
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .principles::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(217,106,71,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .principles-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 16px;
+  }
+  .principles h2 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .principles h2 em { color: var(--accent-soft); font-style: italic; }
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .principle {
+    border-top: 1px solid rgba(245, 241, 232, 0.15);
+    padding-top: 16px;
+  }
+  .principle-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent-soft);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+  .principle-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .principle-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245, 241, 232, 0.75);
+  }
+
+  /* Footer note */
+  .footer-note {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+
+  /* Expand/collapse all */
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+  .toggle-all {
+    background: none;
+    border: 1px solid var(--rule);
+    padding: 6px 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+  .toggle-all:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 32px 20px 60px; }
+    .week-tabs { flex-wrap: wrap; }
+    .week-tab { flex: 1 1 50%; border-bottom: 1px solid var(--rule); }
+    .week-tab:nth-child(2) { border-right: none; }
+    .week-header { grid-template-columns: 1fr; padding: 24px; }
+    .week-time { text-align: left; }
+    .section-header { grid-template-columns: 36px 1fr auto; gap: 12px; padding: 16px; }
+    .section-toggle { display: none; }
+    .section-body-inner { padding-left: 16px; padding-right: 16px; }
+    .section-num { font-size: 18px; }
+    .section-title { font-size: 17px; }
+    .legend { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="eyebrow">Combined Morning Protocol — 4 Weeks</div>
+    <h1>Tendon and balance,<br><em>woven together.</em></h1>
+    <p class="subtitle">A single morning routine merging Achilles loading with the SLSEC progression. Both systems train through the same four-week arc — foundation, progression, loading with instability, integration and test. About 15–20 minutes daily.</p>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot tendon"></span>Tendon loading</div>
+      <div class="legend-item"><span class="legend-dot balance"></span>Balance / SLSEC</div>
+      <div class="legend-item"><span class="legend-dot shared"></span>Shared (warm-up & cool down)</div>
+    </div>
+  </header>
+
+  <nav class="week-tabs" role="tablist">
+    <button class="week-tab active" data-week="1">
+      <span class="num">WEEK 01</span>
+      <span class="label">Foundation</span>
+    </button>
+    <button class="week-tab" data-week="2">
+      <span class="num">WEEK 02</span>
+      <span class="label">Progression</span>
+    </button>
+    <button class="week-tab" data-week="3">
+      <span class="num">WEEK 03</span>
+      <span class="label">Loading</span>
+    </button>
+    <button class="week-tab" data-week="4">
+      <span class="num">WEEK 04</span>
+      <span class="label">Integration</span>
+    </button>
+  </nav>
+
+  <div class="controls">
+    <button class="toggle-all" id="toggleAll">Expand All</button>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-panel active" data-panel="1">
+    <div class="week-header">
+      <div>
+        <div class="week-theme">Build the <em>baseline.</em></div>
+        <div class="week-focus">Bodyweight calf raises with slow tempo. Eyes-open balance with first short doses of eyes-closed work. Week 1 is about ingraining tempo and getting comfortable on one leg.</div>
+      </div>
+      <div class="week-time">
+        <div class="num">~15</div>
+        <div class="unit">Minutes</div>
+      </div>
+    </div>
+
+    <div class="sections">
+      <div class="section type-shared expanded">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title-block">
+            <div class="section-title">Wake the tendon</div>
+            <div class="section-purpose">Mobility & blood flow — never load a cold tendon</div>
+          </div>
+          <div class="section-time">2 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Ankle circles</div>
+            <div class="exercise-detail"><span class="spec">20 each direction</span> per foot — slow and full range</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">Two-foot calf pumps</div>
+            <div class="exercise-detail"><span class="spec">20 reps</span> partial range, gentle rhythm</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">C</div><div>
+            <div class="exercise-name">Knee-to-wall</div>
+            <div class="exercise-detail"><span class="spec">10 each side</span> — drive knee toward wall, heel stays planted</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag balance">Balance</span>Foundation balance</div>
+            <div class="section-purpose">Eyes open — train the system before stressing it</div>
+          </div>
+          <div class="section-time">3 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Single-leg stand, eyes open</div>
+            <div class="exercise-detail"><span class="spec">30s × 2 rounds</span> per leg — fix gaze on a stationary point</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">SL stand, eyes open + slow head turns</div>
+            <div class="exercise-detail"><span class="spec">30s per leg</span> turn head L-R every 2-3 seconds</div>
+            <div class="exercise-tip">Adding head movement decouples vision from vestibular input — first taste of true proprioceptive demand.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-tendon">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag tendon">Tendon</span>Achilles loading</div>
+            <div class="section-purpose">The prescribed work — slow tempo is non-negotiable</div>
+          </div>
+          <div class="section-time">5 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Single-leg calf raise on step</div>
+            <div class="exercise-detail"><span class="spec">3 × 10 each leg</span><span class="spec">Tempo 3-1-3</span> bodyweight only</div>
+            <div class="exercise-tip">3 sec up, 1 sec hold at top, 3 sec lower below step level. Hold a wall lightly for balance — do not pull on it.</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">Seated calf raise</div>
+            <div class="exercise-detail"><span class="spec">2 × 15 per leg</span> knee bent ~90° — bodyweight or very light</div>
+            <div class="exercise-tip">Targets the soleus, which the standing version barely touches.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag balance">SLSEC</span>Eyes-closed introduction</div>
+            <div class="section-purpose">First exposure — short and stable</div>
+          </div>
+          <div class="section-time">3 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Single-leg stand, eyes closed</div>
+            <div class="exercise-detail"><span class="spec">10–15s × 2 rounds</span> per leg — stand near a wall</div>
+            <div class="exercise-tip">Note your roughest leg and your steadiest leg this week. You'll compare in Week 4.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-shared">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <div class="section-title-block">
+            <div class="section-title">Cool down</div>
+            <div class="section-purpose">Static stretch both heads of the calf</div>
+          </div>
+          <div class="section-time">1 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Calf stretch — straight leg + bent knee</div>
+            <div class="exercise-detail"><span class="spec">30s each position</span> per side — wall or step</div>
+          </div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-panel" data-panel="2">
+    <div class="week-header">
+      <div>
+        <div class="week-theme">Add <em>volume</em> and lengthen the holds.</div>
+        <div class="week-focus">Two more reps on the calf raises. Eyes-closed balance grows from glimpses to genuine holds. First max-attempt of the program.</div>
+      </div>
+      <div class="week-time">
+        <div class="num">~17</div>
+        <div class="unit">Minutes</div>
+      </div>
+    </div>
+
+    <div class="sections">
+      <div class="section type-shared expanded">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title-block">
+            <div class="section-title">Wake the tendon</div>
+            <div class="section-purpose">Same warm-up — mobility never gets skipped</div>
+          </div>
+          <div class="section-time">2 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Ankle circles + calf pumps + knee-to-wall</div>
+            <div class="exercise-detail">As Week 1 — full sequence</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag balance">Balance</span>Vestibular challenge</div>
+            <div class="section-purpose">Eyes open with head turns, then sustained eyes-closed</div>
+          </div>
+          <div class="section-time">3 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">SL stand, eyes open + head turns</div>
+            <div class="exercise-detail"><span class="spec">30s per leg</span> single round</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">SL stand, eyes closed</div>
+            <div class="exercise-detail"><span class="spec">15–20s × 2 rounds</span> per leg</div>
+            <div class="exercise-tip">If you can hold 20s comfortably both legs, push to the upper end this week.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-tendon">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag tendon">Tendon</span>Achilles loading</div>
+            <div class="section-purpose">Volume up — same tempo, two more reps per set</div>
+          </div>
+          <div class="section-time">5 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Single-leg calf raise on step</div>
+            <div class="exercise-detail"><span class="spec">3 × 12 each leg</span><span class="spec">Tempo 3-1-3</span> bodyweight</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">Seated calf raise — light load</div>
+            <div class="exercise-detail"><span class="spec">2 × 15 per leg</span> 5–10kg dumbbell on knee</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag balance">SLSEC</span>First max-hold attempt</div>
+            <div class="section-purpose">Find out where you are — but not under any pressure</div>
+          </div>
+          <div class="section-time">4 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">SL stand, eyes closed — work hold</div>
+            <div class="exercise-detail"><span class="spec">20–30s × 2</span> per leg</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">SL stand, eyes closed — single max attempt</div>
+            <div class="exercise-detail"><span class="spec">1 attempt per leg</span> — go until you wobble out</div>
+            <div class="exercise-tip">Note the time on each leg. This is your Week 2 reading. Don't try to push it heroically — just see where you are after the foundation week.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-shared">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <div class="section-title-block">
+            <div class="section-title">Cool down</div>
+            <div class="section-purpose">Same stretches — short and consistent</div>
+          </div>
+          <div class="section-time">1 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Calf stretch — straight leg + bent knee</div>
+            <div class="exercise-detail"><span class="spec">30s each position</span> per side</div>
+          </div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-panel" data-panel="3">
+    <div class="week-header">
+      <div>
+        <div class="week-theme">Tendons want <em>load</em>, balance wants <em>instability.</em></div>
+        <div class="week-focus">Add weight to calf raises with a backpack. Bring in the cushion or folded towel for unstable-surface balance work. Both systems take a clear step up this week.</div>
+      </div>
+      <div class="week-time">
+        <div class="num">~18</div>
+        <div class="unit">Minutes</div>
+      </div>
+    </div>
+
+    <div class="sections">
+      <div class="section type-shared expanded">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title-block">
+            <div class="section-title">Wake the tendon</div>
+            <div class="section-purpose">Especially important now that you're loading heavier</div>
+          </div>
+          <div class="section-time">2 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Ankle circles + calf pumps + knee-to-wall</div>
+            <div class="exercise-detail">As prior weeks — don't shortcut this</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag balance">Balance</span>Eyes-closed work</div>
+            <div class="section-purpose">Sustained holds on stable ground first</div>
+          </div>
+          <div class="section-time">3 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">SL stand, eyes closed</div>
+            <div class="exercise-detail"><span class="spec">30–45s × 2 rounds</span> per leg</div>
+            <div class="exercise-tip">If you can't hold 30s yet, stay at 20–25s — quality over time. Progress next week.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-tendon">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag tendon">Tendon</span>Achilles loading — weighted</div>
+            <div class="section-purpose">Backpack with books or weights, 5–10kg to start</div>
+          </div>
+          <div class="section-time">6 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Loaded single-leg calf raise on step</div>
+            <div class="exercise-detail"><span class="spec">3 × 10–12 each leg</span><span class="spec">Tempo 3-1-3</span> backpack 5–10kg</div>
+            <div class="exercise-tip">Pack should sit high on the back, snug. If form breaks down, drop weight before dropping reps.</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">Seated calf raise — heavier</div>
+            <div class="exercise-detail"><span class="spec">3 × 12 per leg</span> 10–15kg on knee</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag balance">SLSEC</span>Unstable surface</div>
+            <div class="section-purpose">Folded towel or cushion — eyes open, then closed</div>
+          </div>
+          <div class="section-time">4 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">SL stand on cushion, eyes open</div>
+            <div class="exercise-detail"><span class="spec">30s per leg</span> single round — soft surface forces ankle correction</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">SL stand on cushion, eyes closed</div>
+            <div class="exercise-detail"><span class="spec">15–20s × 2 rounds</span> per leg — near a wall for safety</div>
+            <div class="exercise-tip">A folded bath towel works fine. Goal isn't perfection — small constant corrections are the training stimulus.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-shared">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <div class="section-title-block">
+            <div class="section-title">Cool down</div>
+            <div class="section-purpose">Don't skip — heavier load means more recovery needed</div>
+          </div>
+          <div class="section-time">1 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Calf stretch — straight leg + bent knee</div>
+            <div class="exercise-detail"><span class="spec">30s each position</span> per side</div>
+          </div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-panel" data-panel="4">
+    <div class="week-header">
+      <div>
+        <div class="week-theme">Combine and <em>test.</em></div>
+        <div class="week-focus">SLSEC benchmark goes first this week — fresh nervous system, real numbers. Loading continues. Then a final combined challenge that pulls everything together: balance under fatigue, dual-task, instability, vision off.</div>
+      </div>
+      <div class="week-time">
+        <div class="num">~20</div>
+        <div class="unit">Minutes</div>
+      </div>
+    </div>
+
+    <div class="sections">
+      <div class="section type-shared expanded">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <div class="section-title-block">
+            <div class="section-title">Wake the tendon</div>
+            <div class="section-purpose">Standard mobility — adapted tendons still need warm-up</div>
+          </div>
+          <div class="section-time">2 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Ankle circles + calf pumps + knee-to-wall</div>
+            <div class="exercise-detail">Same as prior weeks</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag balance">SLSEC</span>Benchmark — max hold</div>
+            <div class="section-purpose">Done fresh, before loading. This is the number you track.</div>
+          </div>
+          <div class="section-time">5 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">SL eyes-closed max hold — left leg</div>
+            <div class="exercise-detail"><span class="spec">2 attempts</span> rest 60s between — go until you wobble out</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">SL eyes-closed max hold — right leg</div>
+            <div class="exercise-detail"><span class="spec">2 attempts</span> rest 60s between</div>
+            <div class="exercise-tip">Compare to your Week 1 and Week 2 readings. Take your best of the two on each leg. Most people see meaningful change by Week 4 — sometimes dramatic on the weaker leg.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-tendon">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag tendon">Tendon</span>Achilles loading — progressed</div>
+            <div class="section-purpose">Continue building load if Week 3 felt comfortable</div>
+          </div>
+          <div class="section-time">6 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Loaded single-leg calf raise on step</div>
+            <div class="exercise-detail"><span class="spec">3 × 12 each leg</span><span class="spec">Tempo 3-1-3</span> backpack 8–15kg</div>
+            <div class="exercise-tip">Last rep of the last set should feel hard but technically clean. If easy, add weight beyond Week 4.</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">Seated calf raise</div>
+            <div class="exercise-detail"><span class="spec">3 × 12 per leg</span> 12–18kg on knee</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <div class="section-title-block">
+            <div class="section-title"><span class="section-tag balance">Integration</span>Combined challenge</div>
+            <div class="section-purpose">Balance under fatigue + layered demands — the real-world test</div>
+          </div>
+          <div class="section-time">4 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">SL on cushion, eyes closed</div>
+            <div class="exercise-detail"><span class="spec">15–20s × 2 per leg</span></div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div>
+            <div class="exercise-name">SL stand, eyes closed + slow arm reaches</div>
+            <div class="exercise-detail"><span class="spec">20s per leg</span> reach forward / side / overhead, slow</div>
+          </div></div>
+          <div class="exercise"><div class="exercise-mark">C</div><div>
+            <div class="exercise-name">SL stand, eyes closed + slow head turns</div>
+            <div class="exercise-detail"><span class="spec">15s per leg</span> turn head L-R every 2-3 sec</div>
+            <div class="exercise-tip">This is the closest analog to what your body does in the last hour of a long ride or end of a parkrun — small balance demands while fatigued and dual-tasking.</div>
+          </div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-shared">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <div class="section-title-block">
+            <div class="section-title">Cool down</div>
+            <div class="section-purpose">Final stretches — and reflect on the four weeks</div>
+          </div>
+          <div class="section-time">1 min</div>
+          <div class="section-toggle">+</div>
+        </div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div>
+            <div class="exercise-name">Calf stretch — straight leg + bent knee</div>
+            <div class="exercise-detail"><span class="spec">30s each position</span> per side</div>
+          </div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Principles -->
+  <section class="principles">
+    <div class="principles-eyebrow">Five Principles for Both Systems</div>
+    <h2>The work matters more than the <em>numbers.</em></h2>
+    <div class="principle-grid">
+      <div class="principle">
+        <div class="principle-num">— 01</div>
+        <div class="principle-title">Tempo over reps</div>
+        <div class="principle-text">Slow eccentrics drive tendon adaptation. Bouncy reps don't. Three seconds down is non-negotiable.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">— 02</div>
+        <div class="principle-title">Load progresses, not reps</div>
+        <div class="principle-text">Once 3×12 slow feels comfortable, add weight before adding reps. Tendons want load, not endless volume.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">— 03</div>
+        <div class="principle-title">Balance is a skill</div>
+        <div class="principle-text">It's not a strength outcome — it's neural. Daily small doses build it. Wobbling is the work; missing days isn't.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">— 04</div>
+        <div class="principle-title">Discomfort fine, sharp pain isn't</div>
+        <div class="principle-text">A low-grade ache during loading is normal tendon work. Sharp pain or pain lingering past 24 hours means back off.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">— 05</div>
+        <div class="principle-title">Fuel the tendon</div>
+        <div class="principle-text">Take ~15g gelatin or hydrolysed collagen with vitamin C 30–60 min before this routine. Stack the signals.</div>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer-note">Run this past whoever prescribed your original calf-raise protocol before starting. Adjust loads and balance progressions to your tolerance.</p>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.week-tab');
+  const panels = document.querySelectorAll('.week-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const week = tab.dataset.week;
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`[data-panel="${week}"]`).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('.section-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.parentElement.classList.toggle('expanded');
+    });
+  });
+
+  const toggleAllBtn = document.getElementById('toggleAll');
+  toggleAllBtn.addEventListener('click', () => {
+    const activePanel = document.querySelector('.week-panel.active');
+    const sections = activePanel.querySelectorAll('.section');
+    const anyCollapsed = Array.from(sections).some(s => !s.classList.contains('expanded'));
+    sections.forEach(s => {
+      if (anyCollapsed) s.classList.add('expanded');
+      else s.classList.remove('expanded');
+    });
+    toggleAllBtn.textContent = anyCollapsed ? 'Collapse All' : 'Expand All';
+  });
+</script>
+</body>
+</html>

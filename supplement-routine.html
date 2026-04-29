@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Supplement Routine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --bg-card: #ffffff;
+    --ink: #1a1a1a;
+    --ink-soft: #555;
+    --ink-faint: #888;
+    --accent: #2d4a2b;
+    --accent-soft: #5a7a52;
+    --warm: #c4633f;
+    --rule: #e0dcd2;
+    --highlight: #fef6e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    padding: 2rem 1rem 4rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+
+  .header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1.25rem;
+  }
+
+  .header h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header .subtitle {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 3rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-label .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .section-label .line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section .desc {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Card */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  .card-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .card-row:first-child {
+    padding-top: 0;
+  }
+
+  .item-name {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+
+  .item-detail {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+  }
+
+  .item-dose {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 0.15rem;
+  }
+
+  /* Note */
+  .note {
+    background: var(--highlight);
+    border-left: 3px solid var(--warm);
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .note strong {
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Two-column scenarios */
+  .scenarios {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .scenarios {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .scenario {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .scenario h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .scenario ol {
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .scenario ol li {
+    counter-increment: step;
+    padding: 0.5rem 0 0.5rem 2rem;
+    position: relative;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .scenario ol li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scenario ol li strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* Principles */
+  .principles {
+    background: var(--accent);
+    color: white;
+    padding: 2rem;
+    border-radius: 4px;
+    margin-top: 2rem;
+  }
+
+  .principles h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+    color: white;
+  }
+
+  .principles ul {
+    list-style: none;
+  }
+
+  .principles li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    opacity: 0.95;
+  }
+
+  .principles li:last-child {
+    border-bottom: none;
+  }
+
+  .principles li::before {
+    content: "—";
+    margin-right: 0.75rem;
+    opacity: 0.6;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .footer p + p {
+    margin-top: 0.5rem;
+  }
+
+  .disclaimer {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 1.25rem;
+    margin-top: 2rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .disclaimer strong {
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <div class="eyebrow">Personal Protocol</div>
+      <h1>Daily <em>Supplement</em><br>Routine</h1>
+      <p class="subtitle">A timing-optimised stack for recovery, longevity, and Achilles tendon healing.</p>
+    </header>
+
+    <!-- ============ DAILY CORE ============ -->
+    <section class="section">
+      <div class="section-label">
+        <span class="time">— ON THE DAILY</span>
+        <span class="line"></span>
+      </div>
+      <h2>The Core Stack</h2>
+      <p class="desc">These run every day, regardless of training schedule.</p>
+
+      <div class="card">
+        <div class="card-row">
+          <div>
+            <div class="item-name">Morning smoothie</div>
+            <div class="item-detail">Whey isolate, banana, oats (30g), nuts (15g), chia (1 tbsp), skim milk (~1 cup)</div>
+          </div>
+          <div class="item-dose">~25g protein</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">Creatine monohydrate</div>
+            <div class="item-detail">Blended into smoothie</div>
+          </div>
+          <div class="item-dose">5 g</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">Fish oil (omega-3)</div>
+            <div class="item-detail">With smoothie — fat aids absorption</div>
+          </div>
+          <div class="item-dose">2 caps<br>540 EPA / 360 DHA</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">Multivitamin (Swisse Ultivite Men's)</div>
+            <div class="item-detail">Timing varies — see scenarios below</div>
+          </div>
+          <div class="item-dose">1 tablet</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">Magnesium glycinate (Nature's Own)</div>
+            <div class="item-detail">With dinner. Supports recovery, sleep, cramp prevention.</div>
+          </div>
+          <div class="item-dose">2 tablets<br>300 mg elemental</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACHILLES PROTOCOL ============ -->
+    <section class="section">
+      <div class="section-label">
+        <span class="time">— PRIORITY FOCUS</span>
+        <span class="line"></span>
+      </div>
+      <h2>Achilles Strengthening Days</h2>
+      <p class="desc">The collagen + vitamin C window is the highest-leverage piece of this routine. Time it well.</p>
+
+      <div class="scenarios">
+
+        <div class="scenario">
+          <h3>If exercising in the morning</h3>
+          <ol>
+            <li><strong>Wake up:</strong> water + collagen 15 g + multivitamin together</li>
+            <li><strong>Wait 30–60 min</strong> (this is the synthesis window)</li>
+            <li><strong>Achilles exercises</strong> — short session, 5–10 minutes</li>
+            <li><strong>Smoothie + fish oil</strong> after the session (fats help the multi absorb)</li>
+          </ol>
+        </div>
+
+        <div class="scenario">
+          <h3>If exercising later in the day</h3>
+          <ol>
+            <li><strong>Smoothie + multi + fish oil</strong> at usual breakfast time</li>
+            <li><strong>Wait at least 60–90 min</strong> for the meal to digest</li>
+            <li><strong>Collagen 15 g + small vitamin C</strong> source (OJ, kiwi)</li>
+            <li><strong>30–60 min later</strong>, do your Achilles exercises</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Why this matters</strong>
+        Collagen creates a sharp amino acid spike that arrives at your tendon during loading. Vitamin C is a required cofactor for collagen synthesis. Together they amplify tendon remodelling — but only if the collagen is taken on a relatively empty stomach (no whey or big meal blunting the signal).
+      </div>
+    </section>
+
+    <!-- ============ MIDDAY WORKOUT ============ -->
+    <section class="section">
+      <div class="section-label">
+        <span class="time">— TRAINING DAYS</span>
+        <span class="line"></span>
+      </div>
+      <h2>Midday Workouts</h2>
+      <p class="desc">Standard cycling, running, or cross-training session at midday.</p>
+
+      <div class="card">
+        <div class="card-row">
+          <div>
+            <div class="item-name">7–8am — Smoothie + multi + fish oil</div>
+            <div class="item-detail">Full breakfast routine</div>
+          </div>
+          <div class="item-dose">Morning</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">11–11:30am — Collagen 15 g in water</div>
+            <div class="item-detail">Multi's vitamin C still circulating from breakfast</div>
+          </div>
+          <div class="item-dose">30–60 min<br>pre-workout</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">~1pm — Lunch with quality protein</div>
+            <div class="item-detail">Chicken, fish, eggs — 30+ g protein within 1–2 hrs of finishing</div>
+          </div>
+          <div class="item-dose">Post-workout</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">Evening — Magnesium with dinner</div>
+            <div class="item-detail">2 tablets, anytime during the meal</div>
+          </div>
+          <div class="item-dose">300 mg</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ENDURANCE EVENTS ============ -->
+    <section class="section">
+      <div class="section-label">
+        <span class="time">— RACE DAY</span>
+        <span class="line"></span>
+      </div>
+      <h2>Long Endurance Events</h2>
+      <p class="desc">100km+ rides, Olympic triathlons. The key lever is sodium during the event, not magnesium.</p>
+
+      <div class="card">
+        <div class="card-row">
+          <div>
+            <div class="item-name">During event — Sodium intake</div>
+            <div class="item-detail">Sports drinks, electrolyte tabs (LMNT, Precision Hydration, SiS), or salt capsules</div>
+          </div>
+          <div class="item-dose">500–1000 mg<br>per hour</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">If cramping starts — Pickle juice / strong salty shot</div>
+            <div class="item-detail">Triggers a fast neural reflex. Keep some accessible.</div>
+          </div>
+          <div class="item-dose">Acute</div>
+        </div>
+        <div class="card-row">
+          <div>
+            <div class="item-name">Daily magnesium</div>
+            <div class="item-detail">Builds baseline status — won't fix cramps acutely but supports the system</div>
+          </div>
+          <div class="item-dose">Already in stack</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OCCASIONAL ============ -->
+    <section class="section">
+      <div class="section-label">
+        <span class="time">— AS NEEDED</span>
+        <span class="line"></span>
+      </div>
+      <h2>Occasional Use</h2>
+
+      <div class="card">
+        <div class="card-row">
+          <div>
+            <div class="item-name">Bulk Nutrients sleep stack</div>
+            <div class="item-detail">Glycine, taurine, mag threonate, theanine, etc. Save for nights when travel, stress, or late caffeine disrupts sleep — not nightly.</div>
+          </div>
+          <div class="item-dose">1 scoop</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRINCIPLES ============ -->
+    <div class="principles">
+      <h2>Guiding principles</h2>
+      <ul>
+        <li>Collagen pre-workout works because the amino acid signal arrives during loading. Don't blend it into the smoothie — keep the signal clean.</li>
+        <li>Vitamin C is required for collagen synthesis. Always pair them.</li>
+        <li>Multivitamin prefers food fats nearby (within an hour or so). The smoothie covers this.</li>
+        <li>Magnesium glycinate at dinner leverages the glycine for evening recovery.</li>
+        <li>Tendons respond to short, frequent loading — not long sessions. 5–10 minutes is plenty.</li>
+        <li>Race-day cramping is mostly about sodium and pacing, not magnesium.</li>
+        <li>Sleep, training, and food still matter more than any of these supplements.</li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      <strong>A note</strong>
+      This is general guidance based on what you've shared, not medical advice. Worth getting a baseline blood panel (vitamin D, B12, ferritin, lipids, HbA1c) at some point so you can check what's actually working. Run any meaningful changes past your GP — especially if you're on medications or have existing conditions.
+    </div>
+
+    <footer class="footer">
+      <p>Personal supplement protocol</p>
+      <p>Review every 3–6 months</p>
+    </footer>
+
+  </div>
+</body>
+</html>
