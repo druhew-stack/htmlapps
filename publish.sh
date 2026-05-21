@@ -5,6 +5,41 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+inject_nav_script() {
+  # Add <script defer src="./_nav.js"></script> just before </body> in each
+  # subpage. Idempotent — skips files that already reference _nav.js.
+  shopt -s nullglob
+  for file in "$PWD"/*.html "$PWD"/*.htm; do
+    local filename
+    filename=$(basename "$file")
+    [ "$filename" = "index.html" ] && continue
+    [ ! -f "$file" ] && continue
+
+    # Already injected?
+    if grep -q '_nav\.js' "$file"; then
+      continue
+    fi
+
+    # No </body>? Skip to avoid corrupting unusual files.
+    if ! grep -qi '</body>' "$file"; then
+      continue
+    fi
+
+    local tmp="${file}.nav.tmp"
+    awk '
+      BEGIN { done = 0 }
+      {
+        if (!done && tolower($0) ~ /<\/body>/) {
+          print "<script defer src=\"./_nav.js\"></script>"
+          done = 1
+        }
+        print
+      }
+    ' "$file" > "$tmp" && mv "$tmp" "$file"
+  done
+  shopt -u nullglob
+}
+
 generate_index() {
   local index_file="$PWD/index.html"
 
@@ -120,6 +155,7 @@ EMPTY
 FOOTER
 }
 
+inject_nav_script
 generate_index
 
 # Commit and push if there are changes
