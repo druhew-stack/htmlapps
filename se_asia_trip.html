@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hew Family — Southeast Asia, July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Karla:wght@300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EDDF;
+    --paper-soft:#EBE2CF;
+    --paper-shadow:#E0D4BC;
+    --ink:#1A1A1F;
+    --ink-soft:#3F3D40;
+    --ink-mute:#6B6660;
+    --teal:#0F4F4C;
+    --teal-deep:#093230;
+    --coral:#D15B36;
+    --coral-soft:#E2876A;
+    --marigold:#C4943A;
+    --rule:#D6CBB3;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{
+    font-family:'Karla',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:16px;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(208,184,143,0.15) 0, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(209,91,54,0.06) 0, transparent 50%);
+    background-attachment:fixed;
+  }
+
+  /* Subtle paper grain */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0.4;
+    z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ============ NAVIGATION ============ */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    backdrop-filter:blur(8px);
+    background:rgba(244,237,223,0.92);
+  }
+  .nav-inner{
+    max-width:1160px;
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .nav-brand{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:18px;
+    font-variation-settings:'opsz' 9,'SOFT' 100;
+    letter-spacing:-0.01em;
+    color:var(--teal-deep);
+  }
+  .nav-brand em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--coral);
+  }
+  .nav-links{
+    display:flex;
+    gap:6px;
+    list-style:none;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    font-size:13.5px;
+    font-weight:500;
+    padding:8px 14px;
+    border-radius:999px;
+    transition:all 0.2s ease;
+    white-space:nowrap;
+    letter-spacing:0.02em;
+  }
+  .nav-links a:hover{
+    background:var(--paper-soft);
+    color:var(--ink);
+  }
+  .nav-links a.active{
+    background:var(--teal-deep);
+    color:var(--paper);
+  }
+
+  /* ============ LAYOUT ============ */
+  main{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 32px 96px;
+    position:relative;
+    z-index:2;
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:80px 0 64px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--coral);
+    margin-bottom:24px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .eyebrow::before,.eyebrow::after{
+    content:'';
+    flex:0 1 60px;
+    height:1px;
+    background:var(--coral);
+    opacity:0.5;
+  }
+  .eyebrow::after{flex:1}
+  h1.hero-title{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-variation-settings:'opsz' 144,'SOFT' 30;
+    font-size:clamp(52px,9vw,124px);
+    line-height:0.92;
+    letter-spacing:-0.035em;
+    color:var(--teal-deep);
+    margin-bottom:8px;
+  }
+  h1.hero-title em{
+    font-style:italic;
+    font-weight:300;
+    color:var(--coral);
+    font-variation-settings:'opsz' 144,'SOFT' 100;
+  }
+  .hero-sub{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:400;
+    font-style:italic;
+    color:var(--ink-soft);
+    margin-top:24px;
+    max-width:560px;
+    line-height:1.4;
+  }
+  .hero-meta{
+    margin-top:48px;
+    display:flex;
+    gap:48px;
+    flex-wrap:wrap;
+    padding-top:32px;
+    border-top:1px solid var(--rule);
+  }
+  .meta-item{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .meta-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+  }
+  .meta-value{
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    font-weight:500;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+
+  /* ============ ROUTE MAP ============ */
+  .route{
+    margin:64px 0 96px;
+    padding:48px;
+    background:var(--paper-soft);
+    border-radius:4px;
+    border:1px solid var(--rule);
+    position:relative;
+  }
+  .route-svg{width:100%;max-width:800px;margin:0 auto;display:block}
+  .route-title{
+    text-align:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    margin-bottom:32px;
+  }
+
+  /* ============ SECTION HEADERS ============ */
+  section{margin-bottom:96px;scroll-margin-top:84px}
+  .section-header{
+    margin-bottom:48px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:32px;
+    align-items:end;
+    padding-bottom:24px;
+    border-bottom:2px solid var(--ink);
+  }
+  .section-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.2em;
+    color:var(--coral);
+    align-self:start;
+    padding-top:12px;
+  }
+  .section-title{
+    font-family:'Fraunces',serif;
+    font-size:clamp(40px,6vw,72px);
+    font-weight:400;
+    font-variation-settings:'opsz' 144,'SOFT' 50;
+    line-height:0.95;
+    letter-spacing:-0.025em;
+    color:var(--teal-deep);
+  }
+  .section-title em{
+    font-style:italic;
+    font-weight:300;
+    color:var(--coral);
+  }
+  .section-dates{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--ink-mute);
+    margin-top:8px;
+  }
+  .section-intro{
+    max-width:680px;
+    font-size:17px;
+    color:var(--ink-soft);
+    margin-bottom:48px;
+    line-height:1.65;
+  }
+  .section-intro strong{color:var(--ink);font-weight:600}
+
+  /* ============ TRIP OVERVIEW TABLE ============ */
+  .overview{
+    margin-bottom:96px;
+  }
+  .overview-table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--paper-soft);
+    border:1px solid var(--rule);
+  }
+  .overview-table th{
+    text-align:left;
+    padding:18px 24px;
+    background:var(--teal-deep);
+    color:var(--paper);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .overview-table td{
+    padding:20px 24px;
+    border-top:1px solid var(--rule);
+    vertical-align:top;
+  }
+  .overview-table tr:hover td{background:rgba(255,255,255,0.4)}
+  .ov-dates{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .ov-city{
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    font-weight:500;
+    color:var(--teal-deep);
+  }
+  .ov-stay{
+    color:var(--ink-soft);
+    font-size:15px;
+  }
+  .ov-wedding{
+    background:rgba(196,148,58,0.08);
+  }
+  .ov-wedding td:first-child{
+    border-left:3px solid var(--marigold);
+  }
+
+  /* ============ DAY CARDS ============ */
+  .day{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:48px;
+    margin-bottom:64px;
+    padding-bottom:48px;
+    border-bottom:1px solid var(--rule);
+  }
+  .day:last-child{border-bottom:none}
+  .day-marker{
+    position:sticky;
+    top:104px;
+    align-self:start;
+    height:fit-content;
+  }
+  .day-num{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-variation-settings:'opsz' 144;
+    font-size:64px;
+    line-height:0.9;
+    color:var(--teal-deep);
+    letter-spacing:-0.04em;
+  }
+  .day-date{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    margin-top:8px;
+  }
+  .day-content h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-variation-settings:'opsz' 60;
+    font-size:30px;
+    line-height:1.15;
+    letter-spacing:-0.015em;
+    color:var(--ink);
+    margin-bottom:24px;
+  }
+  .day-content h3 em{
+    font-style:italic;
+    color:var(--coral);
+    font-weight:400;
+  }
+
+  /* Timeline items */
+  .timeline{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .timeline li{
+    display:grid;
+    grid-template-columns:108px 1fr;
+    gap:20px;
+    align-items:baseline;
+    padding-left:0;
+  }
+  .tl-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    padding-top:5px;
+    position:relative;
+  }
+  .tl-label.meal{color:var(--coral)}
+  .tl-label.activity{color:var(--teal)}
+  .tl-text{
+    font-size:15.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .tl-text strong{color:var(--ink);font-weight:600}
+  .tl-text em{font-style:italic;color:var(--ink-mute)}
+
+  /* ============ WEDDING CALLOUT ============ */
+  .wedding-card{
+    background:linear-gradient(135deg,var(--teal-deep) 0%,var(--teal) 100%);
+    color:var(--paper);
+    padding:64px;
+    border-radius:4px;
+    position:relative;
+    overflow:hidden;
+    margin:80px 0;
+  }
+  .wedding-card::before{
+    content:'';
+    position:absolute;
+    top:-50%;
+    right:-20%;
+    width:60%;
+    height:200%;
+    background:radial-gradient(circle,rgba(196,148,58,0.2) 0%,transparent 60%);
+    pointer-events:none;
+  }
+  .wedding-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--marigold);
+    margin-bottom:24px;
+  }
+  .wedding-card h2{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-variation-settings:'opsz' 144,'SOFT' 80;
+    font-size:clamp(40px,5vw,64px);
+    line-height:1;
+    letter-spacing:-0.02em;
+    color:var(--paper);
+    margin-bottom:16px;
+  }
+  .wedding-card h2 em{
+    font-style:italic;
+    color:var(--marigold);
+    font-weight:300;
+  }
+  .wedding-card p{
+    font-size:17px;
+    line-height:1.6;
+    color:rgba(244,237,223,0.85);
+    max-width:560px;
+  }
+
+  /* ============ INFO BOX ============ */
+  .info-box{
+    background:var(--paper-soft);
+    border-left:3px solid var(--coral);
+    padding:24px 28px;
+    margin:32px 0;
+    border-radius:0 4px 4px 0;
+  }
+  .info-box-title{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:17px;
+    color:var(--coral);
+    margin-bottom:6px;
+  }
+  .info-box p{font-size:15px;color:var(--ink-soft);line-height:1.6}
+  .info-box p+p{margin-top:10px}
+
+  /* ============ BOOKINGS LIST ============ */
+  .bookings-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:16px;
+    margin-top:32px;
+  }
+  .booking-item{
+    background:var(--paper-soft);
+    border:1px solid var(--rule);
+    padding:20px 24px;
+    border-radius:4px;
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    transition:all 0.2s ease;
+    cursor:default;
+  }
+  .booking-item:hover{
+    background:var(--paper);
+    border-color:var(--coral);
+    transform:translateY(-1px);
+  }
+  .checkbox{
+    width:18px;
+    height:18px;
+    border:1.5px solid var(--ink-mute);
+    border-radius:3px;
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .booking-item p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ============ FOOTNOTE ============ */
+  footer{
+    border-top:1px solid var(--rule);
+    padding-top:32px;
+    margin-top:96px;
+    text-align:center;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--ink-mute);
+  }
+  footer p+p{margin-top:6px}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:768px){
+    main{padding:0 20px 64px}
+    .nav-inner{padding:14px 20px;gap:12px}
+    .nav-brand{font-size:14px}
+    .nav-links a{padding:6px 10px;font-size:12px}
+    .hero{padding:48px 0 40px}
+    .hero-meta{gap:24px}
+    .meta-value{font-size:17px}
+    .route{padding:24px;margin:48px 0 64px}
+    .section-header{grid-template-columns:1fr;gap:8px;padding-bottom:18px}
+    .section-num{padding-top:0}
+    .day{
+      grid-template-columns:1fr;
+      gap:16px;
+      padding-bottom:40px;
+      margin-bottom:40px;
+    }
+    .day-marker{
+      position:static;
+      display:flex;
+      align-items:baseline;
+      gap:16px;
+    }
+    .day-num{font-size:38px}
+    .day-content h3{font-size:24px;margin-bottom:18px}
+    .timeline li{grid-template-columns:80px 1fr;gap:12px}
+    .tl-label{font-size:9.5px}
+    .tl-text{font-size:15px}
+    .wedding-card{padding:36px 28px;margin:48px 0}
+    .overview-table th,.overview-table td{padding:14px 16px}
+    .ov-city{font-size:17px}
+    .info-box{padding:18px 20px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Hew Family <em>· SE Asia '26</em></div>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#singapore">Singapore</a></li>
+      <li><a href="#penang">Penang</a></li>
+      <li><a href="#kl">KL</a></li>
+      <li><a href="#wedding">Wedding</a></li>
+      <li><a href="#bookings">Bookings</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="eyebrow">A Family Travel Journal · July 2026</div>
+  <h1 class="hero-title">Southeast<br><em>Asia</em></h1>
+  <p class="hero-sub">Three weeks across Singapore, Penang and Kuala Lumpur — slow mornings, one big thing a day, and a family wedding to round it all off.</p>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Departure</span>
+      <span class="meta-value">Thu 9 Jul</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Return</span>
+      <span class="meta-value">Tue 28 Jul</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Duration</span>
+      <span class="meta-value">19 nights</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Travellers</span>
+      <span class="meta-value">Family of 5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE MAP -->
+<div class="route">
+  <div class="route-title">The Route</div>
+  <svg class="route-svg" viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg">
+    <!-- dotted route -->
+    <path d="M 100 110 Q 250 60, 400 80 T 700 130" stroke="#D15B36" stroke-width="1.5" fill="none" stroke-dasharray="3 6" opacity="0.7"/>
+    <!-- airplane symbols mid-flight -->
+    <g transform="translate(250, 73) rotate(-12)">
+      <path d="M-7 0 L7 0 M-3 -3 L3 -3 M0 -5 L0 5" stroke="#D15B36" stroke-width="1" fill="none" opacity="0.5"/>
+    </g>
+    <g transform="translate(550, 100) rotate(15)">
+      <path d="M-7 0 L7 0 M-3 -3 L3 -3 M0 -5 L0 5" stroke="#D15B36" stroke-width="1" fill="none" opacity="0.5"/>
+    </g>
+
+    <!-- Sydney (start) -->
+    <g transform="translate(100, 110)">
+      <circle r="6" fill="#0F4F4C"/>
+      <circle r="12" fill="none" stroke="#0F4F4C" stroke-width="1" opacity="0.4"/>
+      <text y="32" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#1A1A1F" letter-spacing="1.5">SYDNEY</text>
+      <text y="46" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="11" fill="#6B6660">home</text>
+    </g>
+
+    <!-- Singapore -->
+    <g transform="translate(380, 80)">
+      <circle r="8" fill="#0F4F4C"/>
+      <circle r="16" fill="none" stroke="#0F4F4C" stroke-width="1" opacity="0.4"/>
+      <text y="-22" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#1A1A1F" letter-spacing="2">SINGAPORE</text>
+      <text y="-8" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="11" fill="#6B6660">9 – 13 Jul</text>
+    </g>
+
+    <!-- Penang -->
+    <g transform="translate(530, 95)">
+      <circle r="8" fill="#D15B36"/>
+      <circle r="16" fill="none" stroke="#D15B36" stroke-width="1" opacity="0.4"/>
+      <text y="-22" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#1A1A1F" letter-spacing="2">PENANG</text>
+      <text y="-8" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="11" fill="#6B6660">13 – 17 Jul</text>
+    </g>
+
+    <!-- KL -->
+    <g transform="translate(700, 130)">
+      <circle r="9" fill="#C4943A"/>
+      <circle r="18" fill="none" stroke="#C4943A" stroke-width="1" opacity="0.4"/>
+      <text y="32" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#1A1A1F" letter-spacing="2">KUALA LUMPUR</text>
+      <text y="46" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="11" fill="#6B6660">17 – 27 Jul · wedding</text>
+    </g>
+  </svg>
+</div>
+
+<!-- OVERVIEW -->
+<section id="overview" class="overview">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div>
+      <h2 class="section-title">At a <em>glance</em></h2>
+    </div>
+  </div>
+  <table class="overview-table">
+    <thead>
+      <tr>
+        <th style="width:25%">Dates</th>
+        <th style="width:35%">City</th>
+        <th>Stay</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ov-dates">Thu 9 — Mon 13 Jul</td>
+        <td class="ov-city">Singapore</td>
+        <td class="ov-stay">The Quay Hotel, Boat Quay</td>
+      </tr>
+      <tr>
+        <td class="ov-dates">Mon 13 — Fri 17 Jul</td>
+        <td class="ov-city">Penang · Batu Ferringhi</td>
+        <td class="ov-stay">By The Sea, beachfront</td>
+      </tr>
+      <tr>
+        <td class="ov-dates">Fri 17 — Fri 24 Jul</td>
+        <td class="ov-city">Kuala Lumpur</td>
+        <td class="ov-stay">1 Min to Pavilion apartment · Bukit Bintang</td>
+      </tr>
+      <tr class="ov-wedding">
+        <td class="ov-dates">Fri 24 — Mon 27 Jul</td>
+        <td class="ov-city">Kuala Lumpur</td>
+        <td class="ov-stay">PARKROYAL COLLECTION · wedding weekend</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SINGAPORE -->
+<section id="singapore">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div>
+      <h2 class="section-title"><em>Singapore</em></h2>
+      <p class="section-dates">Thursday 9 — Monday 13 July · four nights</p>
+    </div>
+  </div>
+  <p class="section-intro">Boat Quay base — walkable to Chinatown, the river hawker centres, and an MRT hop to everywhere else. Light the first night, then the big-ticket items pacing into a slow Sunday with the <strong>Night Safari</strong> as the evening anchor.</p>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">01</div>
+      <div class="day-date">Thu · 9 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Wheels down · <em>welcome to Singapore</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label activity">21:15 · Arrival</span><span class="tl-text">Land at Changi on TR3. Grab to The Quay Hotel.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text">Order in or pop downstairs along <strong>Boat Quay</strong> for noodles. Bed.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">02</div>
+      <div class="day-date">Fri · 10 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Gardens by the <em>Bay</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text"><strong>Toast Box</strong> or <strong>Ya Kun</strong> — kaya toast, soft-boiled eggs, kopi. The kids' intro to local breakfast.</span></li>
+        <li><span class="tl-label activity">Activity</span><span class="tl-text"><strong>Gardens by the Bay</strong> — Cloud Forest + Flower Dome combo. <em>Book online ahead.</em> Indoor, air-conditioned, perfect first-day move.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Satay by the Bay</strong> — outdoor hawker stalls right at Gardens.</span></li>
+        <li><span class="tl-label activity">Optional · 19:45</span><span class="tl-text">Supertree light show — free, 15 min.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Family dinner — TBC</strong>. If not, Lau Pa Sat hawker centre + Satay Street, walking distance from the hotel. <em>Backup if hosting: Jumbo Seafood at Riverside Point.</em></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">03</div>
+      <div class="day-date">Sat · 11 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Sentosa <em>day out</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Hotel, or <strong>Tiong Bahru Bakery</strong> if the kids need a Western day.</span></li>
+        <li><span class="tl-label activity">Activity</span><span class="tl-text"><strong>Universal Studios</strong> — the strong pick for 7/10/12 boys. The 7yo clears the 122 cm threshold for nearly everything; the older two will love Battlestar Galactica and Transformers. Take the cable car over for the arrival.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Malaysian Food Street</strong> on Sentosa — hawker-style, indoors, AC.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Family dinner — TBC</strong>. <em>Backup if not: Newton Food Centre for chilli crab, or Crystal Jade for round-table dim sum-style.</em></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">04</div>
+      <div class="day-date">Sun · 12 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Easy day + <em>Night Safari</em></h3>
+      <div class="info-box">
+        <div class="info-box-title">Today's logic</div>
+        <p>Pace this one carefully. You'll be at the Night Safari from 7pm to 10:30pm — so keep the morning slow, lunch nearby, and bank an afternoon nap. Most family meltdowns at Night Safari are tired kids, not the park itself.</p>
+      </div>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text"><strong>Chye Seng Huat Hardware</strong> (cafe) or local kopitiam for kaya toast round two.</span></li>
+        <li><span class="tl-label activity">Morning</span><span class="tl-text">Slow — hotel pool, or a low-key <strong>ArtScience Museum</strong> visit (indoor, ~2 hours).</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Maxwell Food Centre</strong> — Tian Tian chicken rice. Walking distance from ArtScience.</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text">Back to the hotel for pool/nap. This is the rest you'll need tonight.</span></li>
+        <li><span class="tl-label meal">Pre-dinner</span><span class="tl-text">Eat at Night Safari before the show — <strong>Ulu Ulu Safari Restaurant</strong> or <strong>Casa Italia</strong>. Don't try to dinner in town first or you'll be racing the clock.</span></li>
+        <li><span class="tl-label activity">19:00 — 22:30</span><span class="tl-text"><strong>Night Safari</strong>. Catch the 7:30pm Creatures of the Night show, do the tram ride (~40 min), then walk Fishing Cat Trail. Book tickets online for ~10% discount.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">05</div>
+      <div class="day-date">Mon · 13 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Travel day · <em>onward to Penang</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Somewhere near the hotel — Old Hong Kong Kopitiam or in-house.</span></li>
+        <li><span class="tl-label activity">11:00</span><span class="tl-text">Check out. Grab to Changi T1 for AK1722 at 13:50.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text">At Changi — <strong>Jewel</strong> has good food court options. Allow time to wander Jewel before security.</span></li>
+        <li><span class="tl-label activity">15:10</span><span class="tl-text">Arrive Penang. Taxi to Batu Ferringhi (~45 min).</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PENANG -->
+<section id="penang">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div>
+      <h2 class="section-title"><em>Penang</em></h2>
+      <p class="section-dates">Monday 13 — Friday 17 July · four nights</p>
+    </div>
+  </div>
+  <p class="section-intro">Beach base at <strong>Batu Ferringhi</strong> — pool and sand mornings, day trips into George Town for the culture stuff. Pacing built around that rhythm.</p>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">06</div>
+      <div class="day-date">Mon · 13 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Beach <em>welcome</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label activity">Arrival</span><span class="tl-text">Check in to By The Sea. Kids straight in the pool / ocean.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Long Beach Café</strong> — Batu Ferringhi's iconic open-air hawker court right on the strip. Char kway teow, satay, fresh seafood. Five-minute walk.</span></li>
+        <li><span class="tl-label activity">Evening</span><span class="tl-text"><strong>Batu Ferringhi Night Market</strong> opens ~7pm along Jalan Batu Ferringhi. The boys will love the buzz.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">07</div>
+      <div class="day-date">Tue · 14 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>George Town <em>heritage</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Hotel, or <strong>David Brown's at Strawberry Hill</strong> for the treat version.</span></li>
+        <li><span class="tl-label activity">Activity</span><span class="tl-text">Grab into George Town (~30 min). Self-guided street art walk along Armenian St — the Ernest Zacharevic <strong>"kids on bicycle" mural</strong> is the photo. Pop into <strong>Khoo Kongsi</strong> clan house. ~2 hours.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Tek Sen</strong> on Carnarvon St (book — get the double-roasted pork) or <strong>Line Clear nasi kandar</strong> (legendary, 24hr).</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text">Back to Batu Ferringhi — pool, beach.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Bora Bora by Sunset</strong> (beachfront, casual) or back to Long Beach Café.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">08</div>
+      <div class="day-date">Wed · 15 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Penang Hill + <em>temples</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Hotel.</span></li>
+        <li><span class="tl-label activity">Early start</span><span class="tl-text"><strong>Penang Hill funicular</strong> — leave by 8am to beat heat and crowds. The <strong>Habitat skywalk + canopy walk</strong> at the top is brilliant for the boys. ~3 hours.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text">Down the hill at <strong>Air Itam laksa</strong> — a Penang must.</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text"><strong>Kek Lok Si Temple</strong> next door — biggest Buddhist temple in Malaysia. Giant Kuan Yin statue, turtle pond. ~1 hour.</span></li>
+        <li><span class="tl-label activity">Late</span><span class="tl-text">Back to the resort. Pool, sunset.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Ferringhi Garden</strong> (garden setting, mixed menu) or back to the night market.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">09</div>
+      <div class="day-date">Thu · 16 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>National Park <em>adventure</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Slow, at the hotel.</span></li>
+        <li><span class="tl-label activity">Activity</span><span class="tl-text"><strong>Penang National Park</strong> — 10 min from Batu Ferringhi. Boat ride to <strong>Monkey Beach</strong> or hike to <strong>Turtle Beach</strong>. Real adventure for 7/10/12 boys — jungle, monkeys, swimming. Half day.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text">At the beach (warungs at the entrance) or back at the resort.</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text">Resort time — last pool session. Or <strong>Tropical Spice Garden</strong> if energy allows.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text">Last Penang dinner — <strong>Hameediyah</strong> (oldest nasi kandar in Penang, worth the taxi) or resort sunset cocktails.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">10</div>
+      <div class="day-date">Fri · 17 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Onward to <em>KL</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Hotel one last time. Soak up the sea view.</span></li>
+        <li><span class="tl-label activity">09:00</span><span class="tl-text">Taxi to Penang airport. AK6119 at 11:15.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text">In KL after landing — <strong>Madam Kwan's</strong> at Pavilion or <strong>Jalan Alor</strong> street food.</span></li>
+        <li><span class="tl-label activity">15:00+</span><span class="tl-text">Check in to the Pavilion apartment.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- KL -->
+<section id="kl">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div>
+      <h2 class="section-title">Kuala <em>Lumpur</em></h2>
+      <p class="section-dates">Friday 17 — Monday 27 July · ten nights</p>
+    </div>
+  </div>
+  <p class="section-intro">Bukit Bintang base — KL's food/shopping heart. Walking distance to Pavilion mall, Petronas via the KLCC walkway, and Jalan Alor street food. Slow week leading into the wedding weekend.</p>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">10</div>
+      <div class="day-date">Fri · 17 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Arrival · <em>easy first night</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label activity">15:00</span><span class="tl-text">Check in to the Pavilion apartment.</span></li>
+        <li><span class="tl-label meal">Lunch / linner</span><span class="tl-text"><strong>Madam Kwan's</strong> at Pavilion — KL classic, nasi lemak.</span></li>
+        <li><span class="tl-label activity">Wander</span><span class="tl-text">Pavilion mall (AC for the kids). Grab essentials.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Jalan Alor</strong> — 5 min walk. Satay, grilled fish, frog porridge if anyone's brave.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">11</div>
+      <div class="day-date">Sat · 18 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>KLCC anchor <em>day</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Apartment, or <strong>VCR cafe</strong>.</span></li>
+        <li><span class="tl-label activity">10:00</span><span class="tl-text"><strong>Petronas Towers</strong> — book Sky Bridge + Observation Deck for ~10am. About 90 min.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Suria KLCC food court</strong> — Signatures has every Malaysian classic in one room.</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text"><strong>KLCC Park</strong> playground + splash pad, or <strong>Aquaria KLCC</strong> (indoor, shark tunnel).</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Bijan</strong> (Malay fine dining, book) or <strong>Songket</strong> for cultural dinner-show.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">12</div>
+      <div class="day-date">Sun · 19 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Batu <em>Caves</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text"><strong>Mansion 51</strong> or local kopitiam.</span></li>
+        <li><span class="tl-label activity">Early</span><span class="tl-text"><strong>Batu Caves</strong> — Uber there (~30 min). 272 colourful steps to the giant golden statue. Watch for monkeys. <em>Go 7:30–8am to beat heat and crowds.</em> ~3 hours total.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text">Back in town — <strong>Restoran Yut Kee</strong> (Hainanese chicken chop, old-school).</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text">Pool, chill.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Lot 10 Hutong</strong> — curated hawker hall in the Lot 10 basement.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">13</div>
+      <div class="day-date">Mon · 20 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Slow <em>day</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text"><strong>Merchant's Lane</strong> — hipster cafe.</span></li>
+        <li><span class="tl-label activity">Activity</span><span class="tl-text"><strong>Petrosains Discovery Centre</strong> in KLCC — science museum, hands-on, the boys will love it. 3+ hours easy.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Marini's on 57</strong> for the Petronas view, or <strong>Atmosphere 360</strong> revolving restaurant in KL Tower.</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text">Pool, nap.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Lima Blas</strong> Peranakan or <strong>Limapulo Baba Can Cook</strong>.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">14</div>
+      <div class="day-date">Tue · 21 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Lake Gardens <em>day</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Apartment.</span></li>
+        <li><span class="tl-label activity">Activity</span><span class="tl-text"><strong>KL Bird Park</strong> — world's largest free-flight aviary. ~3 hours. Combine with <strong>Butterfly Park</strong> if energy allows.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Hornbill</strong> inside the Bird Park — decent food, great views.</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text">Chill.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Beta KL</strong> (modern Malaysian tasting) or stay casual at <strong>Wong Ah Wah</strong> chicken wings on Jalan Alor.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">15</div>
+      <div class="day-date">Wed · 22 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Evan's birthday · <em>Putrajaya</em></h3>
+      <div class="info-box">
+        <div class="info-box-title">Birthday day</div>
+        <p>Calendar has Evan's birthday today — could make Putrajaya the special outing, or flip to a rest day with the boys' pick.</p>
+      </div>
+      <ul class="timeline">
+        <li><span class="tl-label activity">Option A</span><span class="tl-text"><strong>Putrajaya</strong> day trip — train down (~45 min). Pink Putra Mosque, Putrajaya Lake cruise, lunch at Alamanda mall. Back by 4pm.</span></li>
+        <li><span class="tl-label activity">Option B</span><span class="tl-text">Rest day — late brekky at <strong>Feeka Coffee Roasters</strong>, mall day at Pavilion + Mid Valley, pool, room service.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Nadodi</strong> if you want a treat, or <strong>Restoran Rebung Chef Ismail</strong> Malay buffet.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">16</div>
+      <div class="day-date">Thu · 23 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Cultural <em>day</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text"><strong>PULP by Papa Palheta</strong>.</span></li>
+        <li><span class="tl-label activity">Activity</span><span class="tl-text"><strong>Central Market + Kasturi Walk</strong> for batik and craft browsing. Short walk to <strong>Merdeka Square</strong> and the <strong>Sultan Abdul Samad Building</strong>. Add <strong>Royal Selangor Pewter</strong> visitor centre if kids want hands-on — they can hammer their own pewter dish.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Yut Kee</strong> round two, or <strong>Old China Cafe</strong> (Peranakan in a heritage shop).</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text"><strong>Bunn Choon</strong> (old-school) or treat night: <strong>Dewakan</strong> (modern Malaysian, two Michelin stars).</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">17</div>
+      <div class="day-date">Fri · 24 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Move to PARKROYAL · <em>wedding prep</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Apartment — finish anything in the fridge.</span></li>
+        <li><span class="tl-label activity">12:00</span><span class="tl-text">Check out of Pavilion. Check into <strong>PARKROYAL</strong> after 3pm (few blocks over).</span></li>
+        <li><span class="tl-label activity">Afternoon</span><span class="tl-text">Spa or pool — start unwinding.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text">Light — <strong>Lima Blas</strong> or quick at the hotel.</span></li>
+        <li><span class="tl-label activity">Prep</span><span class="tl-text">Wedding prep — dress steaming, boys' outfits, gift wrapping.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text">Welcome dinner with family if there's one — otherwise <strong>Nobu KL</strong> or quiet hotel restaurant.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WEDDING CALLOUT -->
+<section id="wedding">
+  <div class="wedding-card">
+    <div class="wedding-label">The Main Event · Saturday 25 + Sunday 26 July</div>
+    <h2>The <em>Wedding</em></h2>
+    <p>Two days based at the PARKROYAL. Schedule will flex around the wedding itself — pace hydration, build pool time for the boys between events, and let the buffet brekky carry the mornings.</p>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">18</div>
+      <div class="day-date">Sat · 25 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Wedding · <em>day one</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">PARKROYAL buffet — they do a great spread.</span></li>
+        <li><span class="tl-label activity">Day</span><span class="tl-text">Pace around the wedding schedule. Light lunch, stay hydrated.</span></li>
+        <li><span class="tl-label activity">Event</span><span class="tl-text">Wedding event afternoon / evening.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">19</div>
+      <div class="day-date">Sun · 26 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Wedding · <em>day two</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">Hotel buffet.</span></li>
+        <li><span class="tl-label activity">Event</span><span class="tl-text">Likely a wedding follow-up (tea ceremony, family lunch).</span></li>
+        <li><span class="tl-label activity">Boys' time</span><span class="tl-text">Pool between events — they'll need the release.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker">
+      <div class="day-num">20</div>
+      <div class="day-date">Mon · 27 Jul</div>
+    </div>
+    <div class="day-content">
+      <h3>Final day · <em>late flight home</em></h3>
+      <ul class="timeline">
+        <li><span class="tl-label meal">Brekky</span><span class="tl-text">PARKROYAL buffet one last time.</span></li>
+        <li><span class="tl-label activity">Light day</span><span class="tl-text">Pavilion for souvenirs, <strong>Kinokuniya</strong> at KLCC for the boys' book hauls.</span></li>
+        <li><span class="tl-label meal">Lunch</span><span class="tl-text"><strong>Nasi Lemak Tanglin</strong> or <strong>Madam Kwan's</strong> for one final hit.</span></li>
+        <li><span class="tl-label activity">Late check-out</span><span class="tl-text">Negotiate at the front desk — often 6pm for a small fee.</span></li>
+        <li><span class="tl-label meal">Dinner</span><span class="tl-text">Early, near the hotel.</span></li>
+        <li><span class="tl-label activity">19:30</span><span class="tl-text">Grab to KLIA for the 22:30 TR467 to Singapore, connecting to TR2.</span></li>
+        <li><span class="tl-label activity">Tue 28 · 11:35</span><span class="tl-text">Land Sydney. 🛬</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKINGS -->
+<section id="bookings">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div>
+      <h2 class="section-title">To <em>lock in</em></h2>
+    </div>
+  </div>
+  <p class="section-intro">The things to get sorted before departure. Most of these are time-sensitive — Petronas Sky Bridge and Universal Studios in particular sell out for prime slots.</p>
+  <div class="bookings-grid">
+    <div class="booking-item"><div class="checkbox"></div><p>Universal Studios Sentosa tickets — Sat 11 Jul</p></div>
+    <div class="booking-item"><div class="checkbox"></div><p>Gardens by the Bay — Cloud Forest + Flower Dome combo</p></div>
+    <div class="booking-item"><div class="checkbox"></div><p>Night Safari tickets — Sun 12 Jul. <em>Online for ~10% off.</em></p></div>
+    <div class="booking-item"><div class="checkbox"></div><p>Petronas Sky Bridge — Sat 18 Jul</p></div>
+    <div class="booking-item"><div class="checkbox"></div><p>Penang Hill funicular — Wed 15 Jul</p></div>
+    <div class="booking-item"><div class="checkbox"></div><p>Coordinate Singapore family dinners (Fri 10 / Sat 11)</p></div>
+    <div class="booking-item"><div class="checkbox"></div><p>Wedding logistics — outfit pressing, gift, transport</p></div>
+    <div class="booking-item"><div class="checkbox"></div><p>Travel insurance, eSIMs, Grab app set up</p></div>
+  </div>
+
+  <div class="info-box" style="margin-top:48px;border-left-color:var(--teal)">
+    <div class="info-box-title" style="color:var(--teal)">Wet-weather backups</div>
+    <p><strong>Singapore:</strong> S.E.A. Aquarium, Petrosains-equivalent, malls.</p>
+    <p><strong>Penang:</strong> Entopia butterfly farm, Tropical Spice Garden indoor sections, Gurney Plaza.</p>
+    <p><strong>KL:</strong> Aquaria, Petrosains, Pavilion / Mid Valley Megamall / IOI City Mall.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Made for the Hew family · July 2026</p>
+  <p>Slow mornings · one big thing a day · plenty of room to pivot</p>
+</footer>
+
+</main>
+
+<script>
+  // Active section highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  function setActive() {
+    const scrollY = window.scrollY + 120;
+    let current = '';
+    sections.forEach(s => {
+      if (scrollY >= s.offsetTop) current = s.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  }
+
+  window.addEventListener('scroll', setActive, {passive: true});
+  setActive();
+</script>
+
+</body>
+</html>
