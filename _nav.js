@@ -5,6 +5,24 @@
   var path = window.location.pathname;
   if (/(?:^|\/)index\.html?$/i.test(path) || /\/$/.test(path)) return;
 
+  // Returns true if a fixed/sticky element is already occupying the top-left
+  // region where the pill would sit. We then drop the pill to bottom-left to
+  // avoid overlapping the page's own header/nav.
+  function topLeftBlocked() {
+    if (typeof document.elementsFromPoint !== 'function') return false;
+    var probes = [[24, 24], [80, 24], [24, 36]];
+    for (var i = 0; i < probes.length; i++) {
+      var stack = document.elementsFromPoint(probes[i][0], probes[i][1]) || [];
+      for (var j = 0; j < stack.length; j++) {
+        var el = stack[j];
+        if (!el || el === document.documentElement || el === document.body) continue;
+        var pos = getComputedStyle(el).position;
+        if (pos === 'fixed' || pos === 'sticky') return true;
+      }
+    }
+    return false;
+  }
+
   function inject() {
     if (document.getElementById('__htmlapps_nav__')) return;
 
@@ -16,7 +34,6 @@
 
     var s = a.style;
     s.position = 'fixed';
-    s.top = 'calc(12px + env(safe-area-inset-top, 0px))';
     s.left = 'calc(12px + env(safe-area-inset-left, 0px))';
     s.zIndex = '2147483647';
     s.padding = '6px 12px 7px';
@@ -36,6 +53,16 @@
     s.transition = 'transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease';
     s.userSelect = 'none';
     s.cursor = 'pointer';
+
+    // Decide top-left vs bottom-left based on whether the page has its own
+    // sticky/fixed header sitting where the pill would otherwise go.
+    if (topLeftBlocked()) {
+      s.top = 'auto';
+      s.bottom = 'calc(14px + env(safe-area-inset-bottom, 0px))';
+    } else {
+      s.top = 'calc(12px + env(safe-area-inset-top, 0px))';
+      s.bottom = 'auto';
+    }
 
     a.addEventListener('mouseenter', function () {
       s.background = 'rgba(20, 20, 25, 0.92)';
