@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#080d1a" />
+<title>Japan Winter Trip · December 2026 – January 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #080d1a; font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: #e8e2d9; }
+  .trip-root { max-width: 900px; margin: 0 auto; padding: 0 0 80px; min-height: 100vh; }
+
+  .hero { position: relative; padding: 60px 32px 48px; overflow: hidden; border-bottom: 1px solid rgba(201,169,110,0.15); }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 0%, rgba(201,169,110,0.08) 0%, transparent 60%), radial-gradient(ellipse at 10% 100%, rgba(96,165,250,0.06) 0%, transparent 50%); pointer-events: none; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: #c9a96e; margin-bottom: 16px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 8vw, 72px); font-weight: 300; line-height: 1.0; color: #f0ede6; margin-bottom: 6px; }
+  .hero-title em { font-style: italic; color: #c9a96e; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: rgba(232,226,217,0.55); margin-bottom: 32px; font-weight: 300; }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; border: 1px solid rgba(201,169,110,0.3); color: #c9a96e; background: rgba(201,169,110,0.07); }
+
+  .nav { display: flex; gap: 0; padding: 0 32px; border-bottom: 1px solid rgba(255,255,255,0.07); position: sticky; top: 0; background: rgba(8,13,26,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 10; overflow-x: auto; }
+  .nav-btn { padding: 16px 20px; background: none; border: none; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,226,217,0.4); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .nav-btn:hover { color: rgba(232,226,217,0.7); }
+  .nav-btn.active { color: #c9a96e; border-bottom-color: #c9a96e; }
+
+  .section { padding: 48px 32px 0; display: none; }
+  .section.active { display: block; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: #f0ede6; margin-bottom: 6px; }
+  .section-title em { font-style: italic; color: #c9a96e; }
+  .section-intro { font-size: 14px; color: rgba(232,226,217,0.5); line-height: 1.7; margin-bottom: 36px; max-width: 600px; }
+
+  .info-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
+  .info-cell { background: #0e1525; padding: 18px 20px; }
+  .info-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,226,217,0.35); margin-bottom: 6px; }
+  .info-value { font-size: 14px; font-weight: 400; color: #e8e2d9; line-height: 1.4; }
+
+  .day-card { display: grid; grid-template-columns: 72px 1fr; gap: 0; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; }
+  .day-label { background: rgba(201,169,110,0.1); border-right: 1px solid rgba(201,169,110,0.15); padding: 20px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px; }
+  .day-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: #c9a96e; line-height: 1; }
+  .day-mon { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(201,169,110,0.6); }
+  .day-body { background: #0e1525; padding: 20px 24px; }
+  .day-heading { font-size: 15px; font-weight: 600; color: #f0ede6; margin-bottom: 10px; }
+  .day-notes { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .day-notes li { font-size: 13px; color: rgba(232,226,217,0.65); line-height: 1.5; padding-left: 16px; position: relative; }
+  .day-notes li::before { content: '→'; position: absolute; left: 0; color: #c9a96e; font-size: 11px; top: 1px; }
+  .slot-label { font-size: 14px; font-weight: 600; letter-spacing: 1px; color: #c9a96e; }
+
+  .guest-section { margin-bottom: 48px; display: none; }
+  .guest-section.active { display: block; }
+  .guest-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .guest-badge { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; flex-shrink: 0; }
+  .badge-1 { background: rgba(96,165,250,0.15); color: #60a5fa; border: 1px solid rgba(96,165,250,0.3); }
+  .badge-2 { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+  .badge-3 { background: rgba(251,113,133,0.12); color: #fb7185; border: 1px solid rgba(251,113,133,0.3); }
+  .guest-info h3 { font-size: 16px; font-weight: 600; color: #f0ede6; margin-bottom: 2px; }
+  .guest-info p { font-size: 12px; color: rgba(232,226,217,0.45); letter-spacing: 0.5px; }
+  .activity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .activity-card { background: #0e1525; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px; }
+  .activity-icon { font-size: 22px; margin-bottom: 8px; }
+  .activity-name { font-size: 13px; font-weight: 600; color: #e8e2d9; margin-bottom: 4px; }
+  .activity-note { font-size: 12px; color: rgba(232,226,217,0.45); line-height: 1.5; }
+
+  .guest-picker { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+  .guest-btn { padding: 9px 18px; border-radius: 8px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(232,226,217,0.45); transition: all 0.2s; }
+  .guest-btn[data-guest="1"].active { border-color: #60a5fa; background: rgba(96,165,250,0.1); color: #60a5fa; }
+  .guest-btn[data-guest="2"].active { border-color: #34d399; background: rgba(52,211,153,0.1); color: #34d399; }
+  .guest-btn[data-guest="3"].active { border-color: #fb7185; background: rgba(251,113,133,0.1); color: #fb7185; }
+
+  .highlight-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 16px; }
+  .highlight-card { background: linear-gradient(135deg, #0e1525 0%, #111a2e 100%); border: 1px solid rgba(201,169,110,0.12); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
+  .highlight-card::after { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%); }
+  .highlight-num { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,169,110,0.5); margin-bottom: 8px; }
+  .highlight-icon { font-size: 24px; margin-bottom: 8px; }
+  .highlight-name { font-size: 14px; font-weight: 600; color: #f0ede6; margin-bottom: 4px; }
+  .highlight-desc { font-size: 12px; color: rgba(232,226,217,0.45); line-height: 1.6; }
+
+  .timeline { position: relative; padding-left: 28px; margin-bottom: 40px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, rgba(201,169,110,0.4), rgba(201,169,110,0.05)); }
+  .timeline-item { position: relative; margin-bottom: 28px; }
+  .timeline-dot { position: absolute; left: -24px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #c9a96e; border: 2px solid #080d1a; box-shadow: 0 0 0 2px rgba(201,169,110,0.3); }
+  .timeline-date { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 4px; }
+  .timeline-title { font-size: 15px; font-weight: 600; color: #f0ede6; margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; color: rgba(232,226,217,0.55); line-height: 1.6; }
+
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 8px; }
+  .tip-card { background: #0e1525; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 18px; }
+  .tip-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 8px; }
+  .tip-text { font-size: 13px; color: rgba(232,226,217,0.65); line-height: 1.6; }
+
+  .divider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent); margin: 40px 0; }
+
+  .birthday-banner { background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,169,110,0.04)); border: 1px solid rgba(201,169,110,0.25); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; }
+  .birthday-banner .icon { font-size: 24px; }
+  .birthday-banner .text { font-size: 13px; color: rgba(232,226,217,0.75); line-height: 1.5; }
+  .birthday-banner .text strong { color: #c9a96e; }
+
+  .sub-heading { margin-bottom: 12px; font-size: 13px; font-weight: 600; color: #e8e2d9; letter-spacing: 1px; margin-top: 28px; }
+
+  .booking-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+  .booking-item { display: flex; align-items: center; gap: 12px; background: #0e1525; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 12px 16px; }
+  .booking-urgency { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; min-width: 72px; }
+  .urgency-now { color: #fb7185; }
+  .urgency-ahead { color: #c9a96e; }
+  .urgency-none { color: #34d399; }
+  .urgency-share { color: #60a5fa; }
+  .urgency-dec { color: #60a5fa; }
+  .booking-content { flex: 1; }
+  .booking-who { font-size: 12px; color: rgba(232,226,217,0.4); margin-right: 8px; }
+  .booking-what { font-size: 13px; color: #e8e2d9; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 20px 36px; }
+    .section { padding: 36px 20px 0; }
+    .nav { padding: 0 12px; }
+    .nav-btn { padding: 14px 12px; font-size: 11px; }
+    .day-card { grid-template-columns: 60px 1fr; }
+    .day-num { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="trip-root">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Family Trip Plan · December 2026 – January 2027</div>
+    <div class="hero-title">Japan<br /><em>Winter Season</em></div>
+    <div class="hero-subtitle">Tokyo · Madarao Kogen · Snow Country</div>
+    <div class="hero-pills">
+      <span class="pill">✈ NH 890 · 24 Dec</span>
+      <span class="pill">🏠 Motoasakusa · 4 nights</span>
+      <span class="pill">⛷ Madarao · ~8 weeks</span>
+      <span class="pill">👨‍👩‍👦 3 Guest Families</span>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn active" data-tab="overview">Overview</button>
+    <button class="nav-btn" data-tab="tokyo">Tokyo</button>
+    <button class="nav-btn" data-tab="madarao">Madarao</button>
+    <button class="nav-btn" data-tab="oscar">Oscar's Bday</button>
+    <button class="nav-btn" data-tab="logistics">Logistics</button>
+  </div>
+
+  <div class="section active" data-section="overview">
+    <div class="section-title">Trip at a <em>Glance</em></div>
+    <div class="section-intro">Five weeks between Tokyo and the mountains — Christmas in the city, New Year in the snow, and three families to host across January. Here's the full shape of the trip.</div>
+
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Dec 24 — Departure Day</div><div class="timeline-title">✈ NH 890 Sydney → Haneda</div><div class="timeline-body">Departs Sydney morning, arrives Tokyo 8:15 PM. Airport pickup included. Check in to the house in Motoasakusa. Christmas Eve in Japan — Tokyo is beautifully lit up.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Dec 25 – 27 — Tokyo</div><div class="timeline-title">🏙 Slow Days in the City</div><div class="timeline-body">Three full days based in Motoasakusa to explore off-the-beaten-path Tokyo. Old neighbourhoods, local markets, art, and good food. The Duongs are nearby for some meals together.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Dec 28 — Travel Day</div><div class="timeline-title">🚄 Shinkansen to Madarao Kogen</div><div class="timeline-body">Morning in Motoasakusa, then Hokuriku Shinkansen from Ueno → Iiyama (~95 mins), taxi or shuttle to Madarao. The Duongs arrive — ski season begins!</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Dec 28 – Jan 6 — The Duongs</div><div class="timeline-title">🎿 New to Skiing — First Timers</div><div class="timeline-body">Lessons, snow play, New Year's Eve, and Hatsumode at Zenkoji on Jan 1. Plus a double birthday celebration — Ruby's on Dec 29 and Oliver's on Dec 30!</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Jan 7 – 14 — The Thais</div><div class="timeline-title">🏂 Experienced Crew — Full Send</div><div class="timeline-body">Experienced skiers/boarders (3 people). Full ski days, day trips to nearby resorts, sake brewery visit, and evenings out in Iiyama.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Jan 15 – 22 — The Hopkins</div><div class="timeline-title">🌨 Newish to Skiing</div><div class="timeline-body">More lessons, Togakushi Shrine, Snow Monkey Park — fantastic winter excursions for the kids. A gentle, scenic final guest visit.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Jan 23 — Return to Tokyo</div><div class="timeline-title">🚄 Back to the City</div><div class="timeline-body">Pack up Madarao and Shinkansen back to Tokyo — giving you a clean rest day before Oscar's big birthday.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Jan 24 — Oscar's 11th Birthday 🎂</div><div class="timeline-title">🎮 Oscar's Tokyo Birthday Day</div><div class="timeline-body">A full day designed around what an 11-year-old loves about Tokyo — Pokemon Center, sushi train, Akihabara arcades, and a birthday yakiniku dinner.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Jan 25 + — Departure</div><div class="timeline-title">✈ Flight Home</div><div class="timeline-body">Rested, well-fed, and (hopefully) on a Pokemon high. Easy transit to Haneda.</div></div>
+    </div>
+
+    <div class="section-title" style="margin-bottom: 16px;">Key <em>Highlights</em></div>
+    <div class="highlight-row">
+      <div class="highlight-card"><div class="highlight-num">No. 01</div><div class="highlight-name">Kiyosumi-Shirakawa</div><div class="highlight-desc">One of Tokyo's quietest stylish neighbourhoods — Blue Bottle's first Japan branch, a traditional garden, and the old shitamachi feel of Monzen-Nakacho next door.</div></div>
+      <div class="highlight-card"><div class="highlight-num">No. 02</div><div class="highlight-name">Yokohama with the Duongs</div><div class="highlight-desc">Cup Noodles Museum, Chinatown lunch, and Minato Mirai's harbour views — a full day out with friends.</div></div>
+      <div class="highlight-card"><div class="highlight-num">No. 03</div><div class="highlight-name">Mt Fuji at Kawaguchiko</div><div class="highlight-desc">December is one of the best months for the classic snow-capped Fuji view across the lake.</div></div>
+      <div class="highlight-card"><div class="highlight-num">No. 04</div><div class="highlight-name">Powder at Madarao</div><div class="highlight-desc">Consistently one of Nagano's best resorts for deep snow and tree skiing.</div></div>
+      <div class="highlight-card"><div class="highlight-num">No. 05</div><div class="highlight-name">Nozawa Onsen</div><div class="highlight-desc">25 min from Madarao — a living ski village with free public hot springs.</div></div>
+      <div class="highlight-card"><div class="highlight-num">No. 06</div><div class="highlight-name">Zenkoji Temple</div><div class="highlight-desc">One of Japan's most sacred temples, especially magical for New Year Hatsumode.</div></div>
+      <div class="highlight-card"><div class="highlight-num">No. 07</div><div class="highlight-name">Snow Monkey Park</div><div class="highlight-desc">Wild Japanese macaques bathing in natural hot springs. Unforgettable for the kids.</div></div>
+      <div class="highlight-card"><div class="highlight-num">No. 08</div><div class="highlight-name">Matsumoto + Strawberries</div><div class="highlight-desc">Beautiful original Crow Castle plus Agri Naganuma strawberry picking on the way home.</div></div>
+    </div>
+  </div>
+
+  <div class="section" data-section="tokyo">
+    <div class="section-title">Tokyo</div>
+    <div class="section-intro">Dec 24–28 · Motoasakusa, Taito City · 4 nights<br />The Duongs are staying nearby too, so you'll have company for some of these days. Good base for exploring the quieter, more local side of the city.</div>
+
+    <div class="info-bar">
+      <div class="info-cell"><div class="info-label">Accommodation</div><div class="info-value">House near Asakusa & Ueno</div></div>
+      <div class="info-cell"><div class="info-label">Address</div><div class="info-value">Motoasakusa 4-chōme-6-5<br />Taito City, 111-0041</div></div>
+      <div class="info-cell"><div class="info-label">Check-in / Out</div><div class="info-value">3pm Dec 24 · 10am Dec 29</div></div>
+      <div class="info-cell"><div class="info-label">Tel</div><div class="info-value">+81 80-3490-6745</div></div>
+    </div>
+
+    <div class="birthday-banner">
+      <div class="icon">🎄</div>
+      <div class="text">You arrive on <strong>Christmas Eve</strong> — Tokyo is beautifully lit and festive. Christmas Day (Dec 25) is a normal working day in Japan, so the city is open and not overwhelmingly touristy.</div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">24</div><div class="day-mon">Dec</div></div>
+      <div class="day-body">
+        <div class="day-heading">Arrival — Christmas Eve</div>
+        <ul class="day-notes">
+          <li>NH 890 arrives Haneda 8:15 PM — airport pickup arranged with accommodation</li>
+          <li>Quick convenience store run (7-Eleven or FamilyMart) for essentials — Japan's konbini are incredible</li>
+          <li>🍜 Late dinner near home: ramen at one of the many spots in the Motoasakusa/Ueno area, or a quick conveyor-belt sushi at Genki Sushi (Ueno)</li>
+          <li>Short evening walk around Ueno Park (10 min) or wander Kappabashi-dori (Kitchen Street, 5 min away) if anyone has energy left</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">25</div><div class="day-mon">Dec</div></div>
+      <div class="day-body">
+        <div class="day-heading">Christmas Day — Kiyosumi-Shirakawa & Monzen-Nakacho + KFC 🍗</div>
+        <ul class="day-notes">
+          <li>Morning: take the metro east to Kiyosumi-Shirakawa (~15 min) — one of Tokyo's most quietly stylish neighbourhoods. Third-wave coffee shops, art galleries, and old wooden houses along the canals.</li>
+          <li>Kiyosumi Garden: one of Tokyo's loveliest traditional gardens, much less crowded than Hamarikyu. Stepping stones across the pond, koi, and tea house views.</li>
+          <li>☕ Coffee stop at Blue Bottle Kiyosumi — the original Blue Bottle in Japan, set in a converted warehouse. Worth the pilgrimage.</li>
+          <li>🍱 Lunch: walk south to Monzen-Nakacho — a proper old-Tokyo shitamachi neighbourhood famous for its izakayas. Try a local set lunch or grab tendon (tempura rice bowls) from one of the neighbourhood spots.</li>
+          <li>Tomioka Hachimangu Shrine: atmospheric and historic, home to one of Tokyo's three great festivals. Quiet and uncrowded on Christmas Day.</li>
+          <li>🍗 Christmas Dinner: KFC! 🎄 Pre-order a Christmas party barrel via the KFC Japan website (sells out — book by mid-December). Pick up at a local branch. 'Kurisumasu ni wa Kentakkii' — genuinely festive and very Japanese.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">26</div><div class="day-mon">Dec</div></div>
+      <div class="day-body">
+        <div class="day-heading">Yokohama with the Duongs</div>
+        <ul class="day-notes">
+          <li>~30 min from Ueno on the JR Keihin-Tohoku Line — very easy to get to</li>
+          <li>Minato Mirai waterfront: Cosmo Clock Ferris wheel, sweeping harbour views, great for photos</li>
+          <li>Cup Noodles Museum: the boys can design and make their own custom cup noodle — book in advance, very popular</li>
+          <li>🥟 Lunch: Yokohama Chinatown — Manchinrou for proper Cantonese, or grab dim sum and steamed buns from the street stalls (more fun with the kids)</li>
+          <li>Yamashita Park stroll along the waterfront for the afternoon</li>
+          <li>🍣 Dinner: back near home — try a local sushi spot or pick up gourmet bento from Ueno's depachika (Matsuzakaya basement food hall)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">27</div><div class="day-mon">Dec</div></div>
+      <div class="day-body">
+        <div class="day-heading">Mt Fuji Views — Kawaguchiko</div>
+        <ul class="day-notes">
+          <li>Highway bus from Shinjuku to Kawaguchiko Lake (~1h 45m) — book in advance, runs regularly</li>
+          <li>Lake Kawaguchi offers one of Japan's most iconic winter views: snow-capped Fuji reflecting in still water. December is one of the best months for visibility.</li>
+          <li>Kachi Kachi Ropeway: short cable car up the mountain for elevated Fuji panoramas — great for the boys</li>
+          <li>🍲 Lunch: Houtou Fudo — famous for hōtō, a flat-noodle miso hot-pot that's the regional specialty. Hearty, warming, and perfect for a cold mountain day.</li>
+          <li>Chureito Pagoda is an easy side trip for the classic five-storey pagoda + Fuji shot (20 min from Kawaguchiko by train)</li>
+          <li>Return bus to Shinjuku, then back to Motoasakusa for a final Tokyo dinner</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">28</div><div class="day-mon">Dec</div></div>
+      <div class="day-body">
+        <div class="day-heading">Morning in Motoasakusa → Shinkansen to Madarao</div>
+        <ul class="day-notes">
+          <li>Morning: final wander through Ueno Park or Kappabashi-dori (the kitchen-equipment street, great for last-minute Japanese knives, ceramics, or food souvenirs)</li>
+          <li>🍡 Brunch/snacks: Ameyoko market street food on the way to the station — yakitori, takoyaki, fresh fruit skewers</li>
+          <li>Shinkansen: Ueno Station → Iiyama (Hokuriku Shinkansen, ~95 min — book reserved seats)</li>
+          <li>Taxi or pre-arranged shuttle from Iiyama to Madarao (~35 min)</li>
+          <li>The Duongs arrive at the apartment today — ski season begins!</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-heading">OTHER NEIGHBOURHOODS WORTH AN AFTERNOON</div>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="tip-label">Kuramae 🪡</div><div class="tip-text">Literally next door to you in Taito City — 'Tokyo's Brooklyn'. Artisan shops (leather, paper, pens), small-batch coffee (Leaves Coffee, Dandelion Chocolate), independent designers. Easy slow morning right from home.</div></div>
+      <div class="tip-card"><div class="tip-label">Shibamata</div><div class="tip-text">30 min east on the Keisei line — feels like time-travel to 1950s Tokyo. Taishakuten Temple, an old shotengai full of sweet shops, and the Tora-san Museum (most beloved Japanese film series). Atmospheric and very local.</div></div>
+      <div class="tip-card"><div class="tip-label">Tsukishima & Tsukuda</div><div class="tip-text">Old fishing-town pocket in central Tokyo. Tsukishima is home to monjayaki (Tokyo's pancake-batter griddle dish, kids love cooking it themselves). Walk the Sumida canals afterwards.</div></div>
+      <div class="tip-card"><div class="tip-label">Kagurazaka</div><div class="tip-text">French-Japanese neighbourhood with hidden alley yokocho. Atmospheric backstreets, great cafes, and surprisingly few tourists. Best in the late afternoon.</div></div>
+      <div class="tip-card"><div class="tip-label">Tomigaya / Okusawa</div><div class="tip-text">Quiet residential pockets near Yoyogi Park / Nakameguro. Excellent cafes, indie bookshops, and slow Tokyo at its best. Pair with a walk along the Meguro River.</div></div>
+      <div class="tip-card"><div class="tip-label">Akihabara</div><div class="tip-text">15 min walk or one stop from Ueno — for a few hours if the boys are into gaming, electronics, or anime. Save the full visit for Oscar's birthday day in January.</div></div>
+      <div class="tip-card"><div class="tip-label">Mt Fuji visibility</div><div class="tip-text">December is one of the best months for Fuji views — clear, cold air and a snow cap. Check the weather the night before; a cloudy day at Kawaguchiko is worth postponing for.</div></div>
+      <div class="tip-card"><div class="tip-label">Cup Noodles Museum</div><div class="tip-text">Book online in advance — this fills up fast, especially in school holidays. The custom cup noodle experience takes about 45 min and the boys will love it.</div></div>
+    </div>
+  </div>
+
+  <div class="section" data-section="madarao">
+    <div class="section-title">Madarao <em>Kogen</em></div>
+    <div class="section-intro">Dec 28 – Late January · Your apartment · Nagano Prefecture<br />Madarao sits in a snow belt that regularly receives some of the deepest, driest powder in Japan. You're perfectly placed for skiing, day trips into the surrounding region, and cosy evenings with guests.</div>
+
+    <div class="info-bar">
+      <div class="info-cell"><div class="info-label">Nearest Station</div><div class="info-value">Iiyama (Hokuriku Shinkansen)</div></div>
+      <div class="info-cell"><div class="info-label">From Iiyama</div><div class="info-value">~35 min by taxi or shuttle</div></div>
+      <div class="info-cell"><div class="info-label">From Nozawa Onsen</div><div class="info-value">~25 min by car</div></div>
+      <div class="info-cell"><div class="info-label">From Nagano City</div><div class="info-value">~45 min by car</div></div>
+    </div>
+
+    <div class="birthday-banner">
+      <div class="icon">🎂</div>
+      <div class="text"><strong>Ruby Duong's birthday is Dec 29</strong> and <strong>Oliver's is Dec 30</strong> — back-to-back celebrations right as the Duongs settle in. <strong>Oscar's birthday is Jan 24</strong> — celebrated back in Tokyo just before the flight home.</div>
+    </div>
+
+    <div class="guest-picker">
+      <button class="guest-btn active" data-guest="1">The Duongs</button>
+      <button class="guest-btn" data-guest="2">The Thais</button>
+      <button class="guest-btn" data-guest="3">The Hopkins</button>
+    </div>
+
+    <div class="guest-section active" data-guest-section="1">
+      <div class="guest-header">
+        <div class="guest-badge badge-1">D</div>
+        <div class="guest-info"><h3>The Duongs · Dec 28 – Jan 6</h3><p>New to skiing / snowboarding · ~10 days · New Year period</p></div>
+      </div>
+      <div class="activity-grid">
+        <div class="activity-card"><div class="activity-icon">🎿</div><div class="activity-name">Ski School — Days 1–3</div><div class="activity-note">Start with group lessons at Madarao Ski School. Half-days work well early on to avoid burnout.</div></div>
+        <div class="activity-card"><div class="activity-icon">🏔</div><div class="activity-name">Snow Play</div><div class="activity-note">Snowshoeing, sledding, and snow-building for lighter days or with younger kids who need a break from the slopes.</div></div>
+        <div class="activity-card"><div class="activity-icon">♨️</div><div class="activity-name">Nozawa Onsen</div><div class="activity-note">A must — walk the village's free communal baths and have lunch in the village. Book a half-day when legs are tired.</div></div>
+        <div class="activity-card"><div class="activity-icon">🎊</div><div class="activity-name">New Year's Eve</div><div class="activity-note">Madarao resort typically has fireworks and events. Check the resort calendar. Cosy night in with the group is equally great.</div></div>
+        <div class="activity-card"><div class="activity-icon">⛩</div><div class="activity-name">Hatsumode — Jan 1</div><div class="activity-note">Drive to Zenkoji Temple in Nagano for Japan's most atmospheric New Year ritual. One of the best things you can do on Jan 1 in this region.</div></div>
+        <div class="activity-card"><div class="activity-icon">🍜</div><div class="activity-name">Sa Sa Soba Night</div><div class="activity-note">Ai's pick — a soba dinner out at Sa Sa. Great group dinner to do once with the Duongs (likely a quieter night between ski days).</div></div>
+        <div class="activity-card"><div class="activity-icon">🎂</div><div class="activity-name">Ruby's Birthday — Dec 29</div><div class="activity-note">Day 1 of the Duongs' trip. Suggested: dinner in at the apartment — sukiyaki or shabu-shabu (interactive, fun for kids, easy with a big group). Cake from a local Iiyama patisserie. Intimate first-night-together celebration.</div></div>
+        <div class="activity-card"><div class="activity-icon">🎂</div><div class="activity-name">Oliver's Birthday — Dec 30</div><div class="activity-note">A night out — try to book Sa Sa for the soba dinner Ai wants to do, or a yakiniku place in Iiyama. Birthday cake to follow back at the apartment. Two birthdays, two different vibes.</div></div>
+      </div>
+      <div class="tip-card" style="margin-top: 4px;">
+        <div class="tip-label">Note for new skiers</div>
+        <div class="tip-text">Madarao's beginner area is gentle and well-suited for first-timers. Private lessons (2–3 hrs) are more effective than group lessons for adults who've never skied. The resort has good equipment rental — sort this in advance if possible.</div>
+      </div>
+    </div>
+
+    <div class="guest-section" data-guest-section="2">
+      <div class="guest-header">
+        <div class="guest-badge badge-2">T</div>
+        <div class="guest-info"><h3>The Thais · Jan 7 – 14</h3><p>Experienced skiers / snowboarders · 3 guests · 8 days</p></div>
+      </div>
+      <div class="activity-grid">
+        <div class="activity-card"><div class="activity-icon">🌲</div><div class="activity-name">Tree Skiing at Madarao</div><div class="activity-note">Madarao is famous for its glades and tree runs. The in-bounds forest areas are exceptional — explore them properly over the week.</div></div>
+        <div class="activity-card"><div class="activity-icon">⛷</div><div class="activity-name">Day Trip: Suginohara</div><div class="activity-note">~40 min by car. Home to one of Japan's longest runs (8.5 km top-to-bottom) — a brilliant long-cruiser day for experienced legs. Easy with your car.</div></div>
+        <div class="activity-card"><div class="activity-icon">🎿</div><div class="activity-name">Day Trip: Nozawa Onsen Ski</div><div class="activity-note">25 min. Larger resort, different terrain, classic Japanese ski village atmosphere. Great day out.</div></div>
+        <div class="activity-card"><div class="activity-icon">🏔</div><div class="activity-name">Day Trip: Myoko / Akakura</div><div class="activity-note">~40 min. Several interconnected resorts with big-mountain feel, plus Akakura's onsen-town vibe. Worth a day.</div></div>
+        <div class="activity-card"><div class="activity-icon">🏰</div><div class="activity-name">Matsumoto Castle Day</div><div class="activity-note">~2 hrs by car — Ai's suggestion. Stunning original castle. Combine with Agri Naganuma strawberry picking (~45 min from Madarao on the way home, open Jan–May). A great rest-from-skiing day.</div></div>
+        <div class="activity-card"><div class="activity-icon">🍶</div><div class="activity-name">Obuse + Sake</div><div class="activity-note">On a rest or blue-sky day — Obuse town (chestnuts, sake breweries, Hokusai Museum) makes for a wonderful half-day out.</div></div>
+        <div class="activity-card"><div class="activity-icon">🍜</div><div class="activity-name">Sa Sa Soba + Iiyama Dinners</div><div class="activity-note">Slot in a Sa Sa soba night (Ai's pick) plus a couple of dinners in Iiyama as a full group — this crew is the most independent.</div></div>
+      </div>
+      <div class="tip-card" style="margin-top: 4px;">
+        <div class="tip-label">For the experienced crew</div>
+        <div class="tip-text">January is typically Madarao's best month for snow. With your car you can easily knock out Suginohara, Nozawa, and Myoko as separate ski days. Hakuba (~1.5 hrs) is also worth considering for one big mountain day if conditions line up.</div>
+      </div>
+    </div>
+
+    <div class="guest-section" data-guest-section="3">
+      <div class="guest-header">
+        <div class="guest-badge badge-3">H</div>
+        <div class="guest-info"><h3>The Hopkins · Jan 15 – ~22</h3><p>Newish to skiing / snowboarding · ~8 days</p></div>
+      </div>
+      <div class="activity-grid">
+        <div class="activity-card"><div class="activity-icon">🎿</div><div class="activity-name">Ski School</div><div class="activity-note">If they've had a lesson or two before, they can skip the absolute beginners' class and go straight to progression — Madarao's instructors are good.</div></div>
+        <div class="activity-card"><div class="activity-icon">🐒</div><div class="activity-name">Snow Monkey Park</div><div class="activity-note">Jigokudani Yaen-koen, ~55 min. Wild macaques bathing in hot springs — one of Japan's most iconic wildlife experiences. Essential with kids.</div></div>
+        <div class="activity-card"><div class="activity-icon">🌲</div><div class="activity-name">Togakushi Shrine</div><div class="activity-note">~1 hour drive. Ancient cedar avenue and interconnected shrines in deep winter forest. Atmospheric and otherworldly.</div></div>
+        <div class="activity-card"><div class="activity-icon">🏰</div><div class="activity-name">Matsumoto Castle + Strawberries</div><div class="activity-note">~2 hrs by car — Ai's suggestion. Beautiful original 'Crow Castle' plus Agri Naganuma strawberry picking (~45 min from Madarao, open Jan–May). Brilliant family day out.</div></div>
+        <div class="activity-card"><div class="activity-icon">♨️</div><div class="activity-name">Nozawa Onsen</div><div class="activity-note">Another round at the onsen village. Works perfectly as a lighter snow day activity — lunch and a soak.</div></div>
+        <div class="activity-card"><div class="activity-icon">🌨</div><div class="activity-name">Snow Activities</div><div class="activity-note">Mid-January Madarao is typically at its snowiest — snowshoe tours through the forest are great for non-ski days.</div></div>
+        <div class="activity-card"><div class="activity-icon">🍜</div><div class="activity-name">Sa Sa Soba + Group Dinners</div><div class="activity-note">Slot in a Sa Sa soba night (Ai's pick) plus a couple of dinners in Iiyama. Also great for nabe nights at the apartment.</div></div>
+      </div>
+      <div class="tip-card" style="margin-top: 4px;">
+        <div class="tip-label">Note for this visit</div>
+        <div class="tip-text">By mid-January the slopes are usually at their best condition. Newish skiers progress quickly in good snow — plan 4–5 ski days and mix in the Snow Monkey Park and Togakushi as full-day excursions to keep things balanced and not too physically demanding.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-title" style="margin-bottom: 16px;">Around <em>the Region</em></div>
+    <div class="section-intro" style="margin-bottom: 20px;">Day trips and local excursions from Madarao — mix and match across all three visits.</div>
+    <div class="highlight-row">
+      <div class="highlight-card"><div class="highlight-icon">⛩</div><div class="highlight-name">Nozawa Onsen Village</div><div class="highlight-desc">25 min away. Walk the free soto-yu hot springs, browse the village, lunch at a local spot. Do this with every group — it never gets old.</div></div>
+      <div class="highlight-card"><div class="highlight-icon">🏯</div><div class="highlight-name">Zenkoji Temple, Nagano</div><div class="highlight-desc">45 min. One of Japan's most important Buddhist temples. Essential on Jan 1 for Hatsumode (first shrine visit of the new year) — deeply atmospheric.</div></div>
+      <div class="highlight-card"><div class="highlight-icon">🐒</div><div class="highlight-name">Jigokudani Snow Monkeys</div><div class="highlight-desc">~55 min. Wild macaques bathing in outdoor hot springs. Absolutely unmissable for families with kids — plan this with the Duongs and the Hopkins.</div></div>
+      <div class="highlight-card"><div class="highlight-icon">🌲</div><div class="highlight-name">Togakushi Shrine</div><div class="highlight-desc">~1 hour. Ancient shrine complex in the mountains with a famous cedar avenue. Magical in deep winter snow. Perfect for the Hopkins.</div></div>
+      <div class="highlight-card"><div class="highlight-icon">🍶</div><div class="highlight-name">Obuse Town + Sake</div><div class="highlight-desc">~1 hr. Charming old town famous for chestnuts, sake, and the Hokusai Museum. Great rest-day half-day for the Thais.</div></div>
+      <div class="highlight-card"><div class="highlight-icon">🏰</div><div class="highlight-name">Matsumoto + Strawberries</div><div class="highlight-desc">~2 hrs by car — Ai's pick. One of Japan's most beautiful original castles. Pair with Agri Naganuma strawberry picking on the way home — ~45 min from Madarao, open Jan–May.</div></div>
+      <div class="highlight-card"><div class="highlight-icon">🎿</div><div class="highlight-name">Nozawa Onsen Ski Resort</div><div class="highlight-desc">25 min. Larger resort with great terrain — a good day-out for the Thais if they want to explore beyond Madarao.</div></div>
+      <div class="highlight-card"><div class="highlight-icon">⛷</div><div class="highlight-name">Suginohara (Myoko)</div><div class="highlight-desc">~40 min by car. Home to one of Japan's longest runs (8.5 km top-to-bottom). A brilliant day out for the Thais — long cruising runs with great views.</div></div>
+      <div class="highlight-card"><div class="highlight-icon">🏔</div><div class="highlight-name">Akakura Onsen + Ikenotaira</div><div class="highlight-desc">~40 min. Multiple interconnected Myoko resorts in a classic onsen-town setting. Worth a day for the Thais; also has gentler terrain that works for the Hopkins.</div></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-heading">DINING IN SNOW COUNTRY</div>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="tip-label">Sa Sa — Soba Night 🍜</div><div class="tip-text">Ai's pick — a soba dinner at Sa Sa. Book ahead, especially for a group. Strong candidate for Oliver's birthday dinner (Dec 30) or one of the Thais nights.</div></div>
+      <div class="tip-card"><div class="tip-label">Ruby's birthday (Dec 29)</div><div class="tip-text">Suggest a home dinner: sukiyaki or shabu-shabu nabe — interactive, kid-friendly, perfect for a first big night together with the Duongs. Cake from an Iiyama patisserie.</div></div>
+      <div class="tip-card"><div class="tip-label">Oliver's birthday (Dec 30)</div><div class="tip-text">A night out — Sa Sa for soba, or a yakiniku place in Iiyama for grilling at the table. Birthday cake to follow at the apartment.</div></div>
+      <div class="tip-card"><div class="tip-label">Iiyama City restaurants</div><div class="tip-text">20 min away — local soba, izakayas, family-friendly restaurants. Good for group dinners across all three weeks. Worth scouting on your first day.</div></div>
+      <div class="tip-card"><div class="tip-label">Nozawa Onsen village</div><div class="tip-text">After-ski casual spots — ramen, beer, izakaya. Pair with a soak at the free soto-yu baths.</div></div>
+      <div class="tip-card"><div class="tip-label">At the apartment</div><div class="tip-text">Stock up at A-Coop supermarket in Iiyama. Great for nabe nights (sukiyaki, shabu-shabu, oden) — easy, fun, and warming. Buy local Shinshu sake and miso while you're there.</div></div>
+      <div class="tip-card"><div class="tip-label">Madarao Resort base</div><div class="tip-text">Several restaurants and a bar at the base area — convenient for lunches on ski days so nobody has to drive back.</div></div>
+      <div class="tip-card"><div class="tip-label">Cake shops in Iiyama</div><div class="tip-text">Look for a local patisserie or check the Iiyama A-Coop bakery section. For something fancier, Nagano City (45 min) has many proper patisseries.</div></div>
+    </div>
+  </div>
+
+  <div class="section" data-section="oscar">
+    <div class="section-title">Oscar's <em>11th Birthday</em></div>
+    <div class="section-intro">Sunday, Jan 24 · Tokyo<br />A full day in Tokyo built around what an 11-year-old loves about Japan — Pokemon, tech, sushi trains, arcades, and a proper birthday dinner.</div>
+
+    <div class="birthday-banner">
+      <div class="icon">🎂</div>
+      <div class="text"><strong>Why come back on Jan 23, not Jan 24:</strong> travel days make terrible birthdays. Packing, train, taxi, hotel check-in — Oscar would be tired and rushed. <strong>Travel Sat the 23rd, celebrate Sun the 24th, fly home Mon the 25th</strong> = a proper birthday and a calm departure.</div>
+    </div>
+
+    <div class="sub-heading">THE PLAN — JAN 24</div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="slot-label">AM</div></div>
+      <div class="day-body">
+        <div class="day-heading">Pokemon Center Mega Tokyo — Ikebukuro</div>
+        <ul class="day-notes">
+          <li>Japan's largest Pokemon Center, on the 2nd floor of Sunshine City. Aim to be there at opening (10:00) before the crowds.</li>
+          <li>Let Oscar pick out a birthday Pokemon — plush, trading card pack, or one of the exclusive Tokyo-only items he won't find anywhere else.</li>
+          <li>Pokemon Cafe is in the same complex but needs a lottery booking ~31 days in advance. Worth trying — if you win the lottery, build lunch around it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="slot-label">LUNCH</div></div>
+      <div class="day-body">
+        <div class="day-heading">🍣 Sushi Train — Genki Sushi or Uobei (Shibuya)</div>
+        <ul class="day-notes">
+          <li>Hop the JR Yamanote line from Ikebukuro to Shibuya (~15 min).</li>
+          <li>Genki Sushi or Uobei Shibuya — touch-screen ordering, sushi delivered on a high-speed track straight to your seat. Pure spectacle for an 11-year-old.</li>
+          <li>Backup option: any Sushiro or Kura Sushi branch — same concept, equally fun.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="slot-label">PM</div></div>
+      <div class="day-body">
+        <div class="day-heading">Akihabara — Arcades, Gaming & Anime</div>
+        <ul class="day-notes">
+          <li>Train from Shibuya to Akihabara (~25 min via Yamanote). Tokyo's gaming, anime, and electronics district.</li>
+          <li>Super Potato: legendary 3-floor retro-gaming store. Old Nintendo, Sega, Game Boy carts everywhere — incredible for an 11-year-old who's curious about gaming history.</li>
+          <li>Hey (Hirose Entertainment Yard) and Taito Station: multi-floor arcades with claw machines (UFO catchers), rhythm games, and racing sims. Bring a stack of 100-yen coins.</li>
+          <li>Nintendo Tokyo (if heading toward Shibuya Parco instead): official Nintendo flagship store with exclusive merch and a Mario photo op. Either Akihabara OR Nintendo Tokyo — both is a lot in one day.</li>
+          <li>Don Quijote Akihabara: massive discount store with weird and wonderful Japan-only finds. Good place for souvenir shopping.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="slot-label">DINNER</div></div>
+      <div class="day-body">
+        <div class="day-heading">🥩 Birthday Yakiniku + Cake</div>
+        <ul class="day-notes">
+          <li>Yakiniku (Japanese BBQ) is perfect for a kid's birthday — everyone grills their own at the table, very interactive.</li>
+          <li>Gyu-Kaku is a reliable casual chain with branches everywhere — great for families, English menus, kid-friendly.</li>
+          <li>For something more special: Han no Daidokoro or Yakiniku Toraji — higher-end wagyu, still kid-friendly, worth the upgrade for a birthday.</li>
+          <li>🍰 Cake: pick up earlier in the day from any depachika — Isetan Shinjuku, Mitsukoshi Ginza, or Takashimaya all have astonishing patisserie sections. Bring it to dinner or save for the hotel room.</li>
+          <li>Most yakiniku places will let you bring a small cake if you ask politely — call ahead.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="slot-label">EVE</div></div>
+      <div class="day-body">
+        <div class="day-heading">Evening — Karaoke or Quiet Wind-Down</div>
+        <ul class="day-notes">
+          <li>If everyone still has energy: an hour at Karaoke Kan or Big Echo. Family rooms, all-you-can-drink soft drinks, and Oscar can pick whatever songs he wants. A very Japanese birthday memory.</li>
+          <li>Otherwise: head back to the hotel for cake, presents, and rest before the flight tomorrow.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-heading">SWAPS IF OSCAR PREFERS OTHER THINGS</div>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="tip-label">If he loves Ghibli</div><div class="tip-text">Try to get Ghibli Museum tickets the day they release (1st of each month, sells out in minutes). If not, Donguri Republic stores in Tokyo Station Ichibangai are the next best thing.</div></div>
+      <div class="tip-card"><div class="tip-label">If he loves cars</div><div class="tip-text">Replace Akihabara with Toyota Mega Web at Odaiba (free, lots to see), or the Honda showroom in Aoyama. Pair with the giant Unicorn Gundam statue at DiverCity.</div></div>
+      <div class="tip-card"><div class="tip-label">If he loves nature</div><div class="tip-text">Tokyo Skytree + Sumida Aquarium combo. Aquarium has otters, penguins, jellyfish — quieter pace, big views.</div></div>
+      <div class="tip-card"><div class="tip-label">If the weather is rotten</div><div class="tip-text">Joypolis at Odaiba is an indoor Sega theme park — VR rides, arcade games, easy to fill 3-4 hours.</div></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-heading">WHERE TO STAY (JAN 23–25)</div>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="tip-label">Same area (Motoasakusa)</div><div class="tip-text">Familiar, easy walking, close to Ueno Station for everything. The same house in Motoasakusa if still available, or a hotel nearby.</div></div>
+      <div class="tip-card"><div class="tip-label">Shibuya / Shinjuku</div><div class="tip-text">More convenient for the Oscar birthday itinerary (Pokemon, Genki Sushi, Nintendo are all close by). Plenty of family-room hotels.</div></div>
+      <div class="tip-card"><div class="tip-label">Near Haneda</div><div class="tip-text">If you want the easiest possible departure day — Royal Park or Villa Fontaine at Haneda. Less character but zero stress on Jan 25.</div></div>
+    </div>
+  </div>
+
+  <div class="section" data-section="logistics">
+    <div class="section-title">Getting <em>Around</em></div>
+    <div class="section-intro">Key logistics, transport, and practical notes for the trip.</div>
+
+    <div class="info-bar" style="margin-bottom: 32px;">
+      <div class="info-cell"><div class="info-label">Flight</div><div class="info-value">NH 890 · SYD → HND<br />Conf: DUSL2X</div></div>
+      <div class="info-cell"><div class="info-label">Departs</div><div class="info-value">Dec 24, 10:25 AM (Sydney)</div></div>
+      <div class="info-cell"><div class="info-label">Arrives</div><div class="info-value">Dec 24, 8:15 PM (Tokyo)</div></div>
+      <div class="info-cell"><div class="info-label">Tokyo Conf</div><div class="info-value">HMR5RXE8C2<br />+81 80-3490-6745</div></div>
+    </div>
+
+    <div class="tips-grid" style="margin-bottom: 40px;">
+      <div class="tip-card"><div class="tip-label">Tokyo → Madarao (Dec 28)</div><div class="tip-text">Hokuriku Shinkansen from Ueno Station to Iiyama (~95 min). Look for E7/W7 series trains. Pre-book reserved seats. Then taxi or pre-arranged shuttle to Madarao (~35 min, ~¥4,000).</div></div>
+      <div class="tip-card"><div class="tip-label">IC Card (Suica/Pasmo)</div><div class="tip-text">Load one each for Tokyo — works on all trains, buses, and konbini. Essential for smooth city travel with kids.</div></div>
+      <div class="tip-card"><div class="tip-label">Madarao Driving</div><div class="tip-text">You'll have a car at Madarao — this opens up everything: Suginohara, Myoko, Snow Monkeys, Matsumoto, Togakushi. Worth planning day trips by group around weather/snow conditions.</div></div>
+      <div class="tip-card"><div class="tip-label">Guest Families</div><div class="tip-text">Hokuriku Shinkansen to Iiyama is the easiest route for all three families arriving from Tokyo. Share the taxi/shuttle info with each in advance.</div></div>
+      <div class="tip-card"><div class="tip-label">Ski Rentals</div><div class="tip-text">Pre-booking ski and snowboard rentals is recommended, especially for beginner families. Madarao resort base has rentals but popular sizes book out.</div></div>
+      <div class="tip-card"><div class="tip-label">SIM / Pocket WiFi</div><div class="tip-text">A Japanese SIM or pocket WiFi is essential. Get this at the airport on arrival — Haneda has several counters. IIJmio or Docomo tourist SIMs are reliable.</div></div>
+      <div class="tip-card"><div class="tip-label">Money</div><div class="tip-text">Japan is still quite cash-based in rural areas. ATMs at 7-Eleven and Japan Post reliably accept foreign cards. Get yen before leaving the city.</div></div>
+      <div class="tip-card"><div class="tip-label">Oliver's Birthday</div><div class="tip-text">Dec 30 — consider booking a restaurant in Iiyama in advance. Japanese New Year period can get busy. Alternatively, a home fondue / nabe night is very cosy.</div></div>
+    </div>
+
+    <div class="section-title" style="margin-bottom: 16px;">Things to <em>Book</em> in Advance</div>
+    <div class="booking-list">
+      <div class="booking-item"><div class="booking-urgency urgency-dec">Book Dec</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">KFC Christmas barrel — pre-order online via the KFC Japan site for Dec 25 collection</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">Kawaguchiko highway bus from Shinjuku — Dec 27 (book reserved seats)</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-now">Book now</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">Cup Noodles Museum, Yokohama — Dec 26 (book online, fills fast in holidays)</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-none">No booking</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">Jigokudani Snow Monkey Park — no booking needed, just allow 3 hrs total</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">Shinkansen seats: Ueno → Iiyama, Dec 28 (outbound)</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">Shinkansen seats: Iiyama → Tokyo, Jan 23 (return for Oscar's birthday)</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-now">Book now</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">Tokyo hotel for Jan 23–25 (2 nights pre-flight + Oscar's birthday)</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-dec">Book Dec</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">Pokemon Cafe lottery — opens 31 days before Jan 24, slim chance but worth trying</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">You →</span><span class="booking-what">Yakiniku restaurant for Oscar's birthday dinner Jan 24 — Gyu-Kaku or higher-end</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">Madarao →</span><span class="booking-what">Sa Sa — book the soba dinner once you have a date locked in (great for Oliver's birthday Dec 30)</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">Madarao →</span><span class="booking-what">Agri Naganuma strawberry picking — book directly (026-295-1093), Jan–May season</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-share">Share info</div><div class="booking-content"><span class="booking-who">Guest Families →</span><span class="booking-what">Shinkansen to Iiyama for each arrival date — share the route with them</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">Duongs →</span><span class="booking-what">Ski school bookings for the Duongs (new to skiing)</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">Hopkins →</span><span class="booking-what">Ski school bookings for the Hopkins (newish to skiing)</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-ahead">Book ahead</div><div class="booking-content"><span class="booking-who">All families →</span><span class="booking-what">Equipment rentals — confirm sizes in advance for Duongs and Hopkins</span></div></div>
+      <div class="booking-item"><div class="booking-urgency urgency-dec">Book Dec</div><div class="booking-content"><span class="booking-who">Iiyama →</span><span class="booking-what">Restaurant for Ruby + Oliver's birthday dinners (Dec 29–30)</span></div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.nav-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = btn.dataset.tab;
+      document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+      document.querySelector('.section[data-section="' + tab + '"]').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  document.querySelectorAll('.guest-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var guest = btn.dataset.guest;
+      document.querySelectorAll('.guest-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.guest-section').forEach(function(s) { s.classList.remove('active'); });
+      document.querySelector('.guest-section[data-guest-section="' + guest + '"]').classList.add('active');
+    });
+  });
+</script>
+<script defer src="./_nav.js"></script>
+</body>
+</html>
