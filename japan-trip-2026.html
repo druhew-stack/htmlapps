@@ -15,15 +15,15 @@
 
   .hero { position: relative; padding: 60px 32px 48px; overflow: hidden; border-bottom: 1px solid rgba(201,169,110,0.15); }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 0%, rgba(201,169,110,0.08) 0%, transparent 60%), radial-gradient(ellipse at 10% 100%, rgba(96,165,250,0.06) 0%, transparent 50%); pointer-events: none; }
-  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: #c9a96e; margin-bottom: 16px; }
+  .hero-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: #c9a96e; margin-bottom: 16px; }
   .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 8vw, 72px); font-weight: 300; line-height: 1.0; color: #f0ede6; margin-bottom: 6px; }
   .hero-title em { font-style: italic; color: #c9a96e; }
   .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: rgba(232,226,217,0.55); margin-bottom: 32px; font-weight: 300; }
   .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .pill { padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; letter-spacing: 0.5px; border: 1px solid rgba(201,169,110,0.3); color: #c9a96e; background: rgba(201,169,110,0.07); }
+  .pill { padding: 5px 14px; border-radius: 20px; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; border: 1px solid rgba(201,169,110,0.3); color: #c9a96e; background: rgba(201,169,110,0.07); }
 
   .nav { display: flex; gap: 0; padding: 0 32px; border-bottom: 1px solid rgba(255,255,255,0.07); position: sticky; top: 0; background: rgba(8,13,26,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 10; overflow-x: auto; }
-  .nav-btn { padding: 16px 20px; background: none; border: none; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,226,217,0.4); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  .nav-btn { padding: 16px 20px; background: none; border: none; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,226,217,0.4); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
   .nav-btn:hover { color: rgba(232,226,217,0.7); }
   .nav-btn.active { color: #c9a96e; border-bottom-color: #c9a96e; }
 
@@ -31,23 +31,23 @@
   .section.active { display: block; }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: #f0ede6; margin-bottom: 6px; }
   .section-title em { font-style: italic; color: #c9a96e; }
-  .section-intro { font-size: 14px; color: rgba(232,226,217,0.5); line-height: 1.7; margin-bottom: 36px; max-width: 600px; }
+  .section-intro { font-size: 16px; color: rgba(232,226,217,0.5); line-height: 1.7; margin-bottom: 36px; max-width: 600px; }
 
   .info-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
   .info-cell { background: #0e1525; padding: 18px 20px; }
-  .info-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,226,217,0.35); margin-bottom: 6px; }
-  .info-value { font-size: 14px; font-weight: 400; color: #e8e2d9; line-height: 1.4; }
+  .info-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,226,217,0.35); margin-bottom: 6px; }
+  .info-value { font-size: 16px; font-weight: 400; color: #e8e2d9; line-height: 1.4; }
 
   .day-card { display: grid; grid-template-columns: 72px 1fr; gap: 0; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden; }
   .day-label { background: rgba(201,169,110,0.1); border-right: 1px solid rgba(201,169,110,0.15); padding: 20px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px; }
   .day-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: #c9a96e; line-height: 1; }
-  .day-mon { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(201,169,110,0.6); }
+  .day-mon { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(201,169,110,0.6); }
   .day-body { background: #0e1525; padding: 20px 24px; }
-  .day-heading { font-size: 15px; font-weight: 600; color: #f0ede6; margin-bottom: 10px; }
+  .day-heading { font-size: 17px; font-weight: 600; color: #f0ede6; margin-bottom: 10px; }
   .day-notes { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .day-notes li { font-size: 13px; color: rgba(232,226,217,0.65); line-height: 1.5; padding-left: 16px; position: relative; }
-  .day-notes li::before { content: '→'; position: absolute; left: 0; color: #c9a96e; font-size: 11px; top: 1px; }
-  .slot-label { font-size: 14px; font-weight: 600; letter-spacing: 1px; color: #c9a96e; }
+  .day-notes li { font-size: 15px; color: rgba(232,226,217,0.65); line-height: 1.6; padding-left: 16px; position: relative; }
+  .day-notes li::before { content: '→'; position: absolute; left: 0; color: #c9a96e; font-size: 13px; top: 1px; }
+  .slot-label { font-size: 16px; font-weight: 600; letter-spacing: 1px; color: #c9a96e; }
 
   .guest-section { margin-bottom: 48px; display: none; }
   .guest-section.active { display: block; }
@@ -56,16 +56,16 @@
   .badge-1 { background: rgba(96,165,250,0.15); color: #60a5fa; border: 1px solid rgba(96,165,250,0.3); }
   .badge-2 { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
   .badge-3 { background: rgba(251,113,133,0.12); color: #fb7185; border: 1px solid rgba(251,113,133,0.3); }
-  .guest-info h3 { font-size: 16px; font-weight: 600; color: #f0ede6; margin-bottom: 2px; }
-  .guest-info p { font-size: 12px; color: rgba(232,226,217,0.45); letter-spacing: 0.5px; }
+  .guest-info h3 { font-size: 18px; font-weight: 600; color: #f0ede6; margin-bottom: 2px; }
+  .guest-info p { font-size: 14px; color: rgba(232,226,217,0.45); letter-spacing: 0.5px; }
   .activity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
   .activity-card { background: #0e1525; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px; }
   .activity-icon { font-size: 22px; margin-bottom: 8px; }
-  .activity-name { font-size: 13px; font-weight: 600; color: #e8e2d9; margin-bottom: 4px; }
-  .activity-note { font-size: 12px; color: rgba(232,226,217,0.45); line-height: 1.5; }
+  .activity-name { font-size: 15px; font-weight: 600; color: #e8e2d9; margin-bottom: 4px; }
+  .activity-note { font-size: 14px; color: rgba(232,226,217,0.45); line-height: 1.6; }
 
   .guest-picker { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
-  .guest-btn { padding: 9px 18px; border-radius: 8px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(232,226,217,0.45); transition: all 0.2s; }
+  .guest-btn { padding: 9px 18px; border-radius: 8px; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(232,226,217,0.45); transition: all 0.2s; }
   .guest-btn[data-guest="1"].active { border-color: #60a5fa; background: rgba(96,165,250,0.1); color: #60a5fa; }
   .guest-btn[data-guest="2"].active { border-color: #34d399; background: rgba(52,211,153,0.1); color: #34d399; }
   .guest-btn[data-guest="3"].active { border-color: #fb7185; background: rgba(251,113,133,0.1); color: #fb7185; }
@@ -73,50 +73,50 @@
   .highlight-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 16px; }
   .highlight-card { background: linear-gradient(135deg, #0e1525 0%, #111a2e 100%); border: 1px solid rgba(201,169,110,0.12); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
   .highlight-card::after { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%); }
-  .highlight-num { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,169,110,0.5); margin-bottom: 8px; }
+  .highlight-num { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,169,110,0.5); margin-bottom: 8px; }
   .highlight-icon { font-size: 24px; margin-bottom: 8px; }
-  .highlight-name { font-size: 14px; font-weight: 600; color: #f0ede6; margin-bottom: 4px; }
-  .highlight-desc { font-size: 12px; color: rgba(232,226,217,0.45); line-height: 1.6; }
+  .highlight-name { font-size: 16px; font-weight: 600; color: #f0ede6; margin-bottom: 4px; }
+  .highlight-desc { font-size: 14px; color: rgba(232,226,217,0.45); line-height: 1.6; }
 
   .timeline { position: relative; padding-left: 28px; margin-bottom: 40px; }
   .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, rgba(201,169,110,0.4), rgba(201,169,110,0.05)); }
   .timeline-item { position: relative; margin-bottom: 28px; }
   .timeline-dot { position: absolute; left: -24px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #c9a96e; border: 2px solid #080d1a; box-shadow: 0 0 0 2px rgba(201,169,110,0.3); }
-  .timeline-date { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 4px; }
-  .timeline-title { font-size: 15px; font-weight: 600; color: #f0ede6; margin-bottom: 4px; }
-  .timeline-body { font-size: 13px; color: rgba(232,226,217,0.55); line-height: 1.6; }
+  .timeline-date { font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 4px; }
+  .timeline-title { font-size: 17px; font-weight: 600; color: #f0ede6; margin-bottom: 4px; }
+  .timeline-body { font-size: 15px; color: rgba(232,226,217,0.55); line-height: 1.6; }
 
   .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 8px; }
   .tip-card { background: #0e1525; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 18px; }
-  .tip-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 8px; }
-  .tip-text { font-size: 13px; color: rgba(232,226,217,0.65); line-height: 1.6; }
+  .tip-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 8px; }
+  .tip-text { font-size: 15px; color: rgba(232,226,217,0.65); line-height: 1.6; }
 
   .divider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent); margin: 40px 0; }
 
   .birthday-banner { background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,169,110,0.04)); border: 1px solid rgba(201,169,110,0.25); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; }
   .birthday-banner .icon { font-size: 24px; }
-  .birthday-banner .text { font-size: 13px; color: rgba(232,226,217,0.75); line-height: 1.5; }
+  .birthday-banner .text { font-size: 15px; color: rgba(232,226,217,0.75); line-height: 1.6; }
   .birthday-banner .text strong { color: #c9a96e; }
 
-  .sub-heading { margin-bottom: 12px; font-size: 13px; font-weight: 600; color: #e8e2d9; letter-spacing: 1px; margin-top: 28px; }
+  .sub-heading { margin-bottom: 12px; font-size: 15px; font-weight: 600; color: #e8e2d9; letter-spacing: 1px; margin-top: 28px; }
 
   .booking-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
   .booking-item { display: flex; align-items: center; gap: 12px; background: #0e1525; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 12px 16px; }
-  .booking-urgency { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; min-width: 72px; }
+  .booking-urgency { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; min-width: 72px; }
   .urgency-now { color: #fb7185; }
   .urgency-ahead { color: #c9a96e; }
   .urgency-none { color: #34d399; }
   .urgency-share { color: #60a5fa; }
   .urgency-dec { color: #60a5fa; }
   .booking-content { flex: 1; }
-  .booking-who { font-size: 12px; color: rgba(232,226,217,0.4); margin-right: 8px; }
-  .booking-what { font-size: 13px; color: #e8e2d9; }
+  .booking-who { font-size: 14px; color: rgba(232,226,217,0.4); margin-right: 8px; }
+  .booking-what { font-size: 15px; color: #e8e2d9; }
 
   @media (max-width: 600px) {
     .hero { padding: 40px 20px 36px; }
     .section { padding: 36px 20px 0; }
     .nav { padding: 0 12px; }
-    .nav-btn { padding: 14px 12px; font-size: 11px; }
+    .nav-btn { padding: 14px 12px; font-size: 13px; }
     .day-card { grid-template-columns: 60px 1fr; }
     .day-num { font-size: 22px; }
   }
@@ -141,6 +141,7 @@
     <button class="nav-btn active" data-tab="overview">Overview</button>
     <button class="nav-btn" data-tab="tokyo">Tokyo</button>
     <button class="nav-btn" data-tab="madarao">Madarao</button>
+    <button class="nav-btn" data-tab="duongs">Duongs Tokyo</button>
     <button class="nav-btn" data-tab="oscar">Oscar's Bday</button>
     <button class="nav-btn" data-tab="logistics">Logistics</button>
   </div>
@@ -386,6 +387,116 @@
       <div class="tip-card"><div class="tip-label">At the apartment</div><div class="tip-text">Stock up at A-Coop supermarket in Iiyama. Great for nabe nights (sukiyaki, shabu-shabu, oden) — easy, fun, and warming. Buy local Shinshu sake and miso while you're there.</div></div>
       <div class="tip-card"><div class="tip-label">Madarao Resort base</div><div class="tip-text">Several restaurants and a bar at the base area — convenient for lunches on ski days so nobody has to drive back.</div></div>
       <div class="tip-card"><div class="tip-label">Cake shops in Iiyama</div><div class="tip-text">Look for a local patisserie or check the Iiyama A-Coop bakery section. For something fancier, Nagano City (45 min) has many proper patisseries.</div></div>
+    </div>
+  </div>
+
+  <div class="section" data-section="duongs">
+    <div class="section-title">The Duongs <em>in Tokyo</em></div>
+    <div class="section-intro">Jan 6–10 · Shimokitazawa, Setagaya City · 4 nights<br />Slow Tokyo from a brilliantly walkable base. Shimokitazawa is one of Tokyo's most beloved indie neighbourhoods — vintage shops, tiny bars, third-wave cafes, and small restaurants tucked into back alleys. Perfect for the kind of slow travel you'd enjoy.</div>
+
+    <div class="info-bar">
+      <div class="info-cell"><div class="info-label">Stay</div><div class="info-value">Shimokitazawa area</div></div>
+      <div class="info-cell"><div class="info-label">Address</div><div class="info-value">1-chōme-22-2 Kitazawa<br />Setagaya City, 155-0031</div></div>
+      <div class="info-cell"><div class="info-label">In Tokyo</div><div class="info-value">Jan 6 (4pm) → Jan 10 (early)</div></div>
+      <div class="info-cell"><div class="info-label">Flight Home</div><div class="info-value">8:35 AM, Jan 10 → SYD</div></div>
+    </div>
+
+    <div class="birthday-banner">
+      <div class="icon">🎒</div>
+      <div class="text"><strong>Why Shimokitazawa is perfect for slow travel:</strong> a bohemian, low-rise neighbourhood that locals adore. It's car-free in places, the streets are narrow and pedestrian, and you can spend a whole afternoon just wandering. Direct trains to Shibuya (5 min) and Kichijoji (15 min) make day trips easy.</div>
+    </div>
+
+    <div class="sub-heading">GETTING THERE FROM MADARAO</div>
+    <div class="tips-grid" style="margin-bottom: 32px;">
+      <div class="tip-card"><div class="tip-label">Step 1</div><div class="tip-text">Taxi or shuttle from Madarao to Iiyama Station (~35 min). Pre-book to be sure.</div></div>
+      <div class="tip-card"><div class="tip-label">Step 2</div><div class="tip-text">Hokuriku Shinkansen: Iiyama → Tokyo Station (~100 min). Book reserved seats in advance.</div></div>
+      <div class="tip-card"><div class="tip-label">Step 3</div><div class="tip-text">Tokyo Station → Shimokitazawa: JR Chuo Line to Shinjuku, then Odakyu line (~25 min, ~¥300). Or just take a taxi from Shinjuku (~15 min).</div></div>
+      <div class="tip-card"><div class="tip-label">Total time</div><div class="tip-text">~3 to 3.5 hours door-to-door. Leaving Madarao around 12pm gets you settled in Shimokitazawa by 4pm.</div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">6</div><div class="day-mon">Jan</div></div>
+      <div class="day-body">
+        <div class="day-heading">Arrival — Settling into Shimokitazawa</div>
+        <ul class="day-notes">
+          <li>Travel day from Madarao — see "Getting there" above. Arrive around 4pm.</li>
+          <li>Drop bags, then take a slow walk around the neighbourhood. The south exit area has small restaurants and bars; the north has vintage shops and cafes.</li>
+          <li>🍜 Dinner: easy options nearby — local ramen, izakaya, or curry. Try Mosburger or Ichiran if the kids want something familiar; otherwise wander and pick something with a queue out front.</li>
+          <li>Early night — you've earned it after travel.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">7</div><div class="day-mon">Jan</div></div>
+      <div class="day-body">
+        <div class="day-heading">Inokashira Park & Kichijoji</div>
+        <ul class="day-notes">
+          <li>Take the Keio Inokashira line west from Shimokitazawa to Kichijoji (~15 min, direct). One of Tokyo's most livable neighbourhoods.</li>
+          <li>Inokashira Park: a big lake with paddle boats (kids will love), walking trails, street performers on weekends. Easy, slow, beautiful.</li>
+          <li>🍱 Lunch: Harmonica Yokocho — a small alley of food stalls and tiny bars in Kichijoji. Yakitori, sushi, ramen, all hidden away. Very atmospheric.</li>
+          <li>Afternoon option 1: Ghibli Museum (Mitaka) — needs booking in advance (tickets release the 1st of each month, sell out fast). If you can get them, this is unmissable.</li>
+          <li>Afternoon option 2: Kichijoji shopping streets — small boutiques, vintage, kids' shops, anime stores</li>
+          <li>🍣 Dinner: back in Shimokitazawa — try Shirohige's Cream Puff Factory for dessert (Totoro-shaped cream puffs!), or a casual sushi spot</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">8</div><div class="day-mon">Jan</div></div>
+      <div class="day-body">
+        <div class="day-heading">Meiji Shrine, Yoyogi, Harajuku → Aoyama</div>
+        <ul class="day-notes">
+          <li>Train from Shimokitazawa to Yoyogi-Hachiman or Harajuku (~10 min)</li>
+          <li>Morning: Meiji Shrine — Tokyo's most important Shinto shrine, set in a huge forest in the middle of the city. Quiet, slow, deeply atmospheric.</li>
+          <li>Yoyogi Park alongside — pleasant winter walk through Tokyo's biggest open green space</li>
+          <li>🥞 Lunch: Harajuku side — Afuri ramen, or one of the great cafes along Cat Street</li>
+          <li>Afternoon: walk down Omotesando (Tokyo's Champs-Élysées — wide tree-lined avenue, architecture by Tadao Ando, Kengo Kuma, etc.) to Aoyama</li>
+          <li>Stop at Aoyama Flower Market Tea House for a quiet break, or browse Tokyu Hands Omotesando</li>
+          <li>🍢 Dinner: return to Shimokitazawa for an izakaya night — the neighbourhood does this brilliantly</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">9</div><div class="day-mon">Jan</div></div>
+      <div class="day-body">
+        <div class="day-heading">Hidden Tokyo — Daikanyama & Nakameguro (or Kagurazaka)</div>
+        <ul class="day-notes">
+          <li>Option A: Daikanyama + Nakameguro. Train Shimokitazawa → Naka-Meguro (~15 min). Daikanyama T-Site is one of the world's best bookstores. Walk along the Meguro River — beautiful even without cherry blossoms, full of small cafes.</li>
+          <li>🥐 Lunch: Onibus Coffee (Nakameguro), or one of the many tiny cafes along the river</li>
+          <li>Option B: Kagurazaka — old French-Japanese neighbourhood with hidden alleyway restaurants. About 30 min from Shimokitazawa. Atmospheric backstreets, traditional sweet shops.</li>
+          <li>Late afternoon: head back to Shimokitazawa, do final vintage shopping if anyone's keen</li>
+          <li>🍶 Last-night dinner: somewhere special in the neighbourhood. Shirube (modern izakaya) is famous if you can book; otherwise pick a tiny spot you've walked past and liked the look of.</li>
+          <li>Pack tonight — early morning departure tomorrow</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label"><div class="day-num">10</div><div class="day-mon">Jan</div></div>
+      <div class="day-body">
+        <div class="day-heading">Early Departure ✈ Flight 8:35 AM</div>
+        <ul class="day-notes">
+          <li>Wake very early — need to be at Haneda by ~6:30 AM for an 8:35 AM international flight</li>
+          <li>Pre-book a taxi the night before: Shimokitazawa → Haneda is ~35–40 min by taxi, ~¥8,000–10,000. Worth every yen at this hour.</li>
+          <li>Alternative: Airport Limousine Bus from Shibuya (very early departures, ~45 min, much cheaper)</li>
+          <li>Tokyo trains don't start running until ~5 AM and may not get you there in time, so taxi is the safer bet</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="sub-heading">SHIMOKITAZAWA NEIGHBOURHOOD NOTES</div>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="tip-label">Vintage shopping</div><div class="tip-text">Shimokita is famous for it — Flamingo, Chicago, New York Joe Exchange, Stick Out. North side of the station has the densest concentration. Easy slow afternoon.</div></div>
+      <div class="tip-card"><div class="tip-label">Coffee scene</div><div class="tip-text">Bear Pond Espresso (small, intense), Cafe Stay Happy (cozy), and several small roasters. The whole area is a coffee lover's paradise.</div></div>
+      <div class="tip-card"><div class="tip-label">Curry</div><div class="tip-text">Shimokita has dozens of curry shops — it's a local thing. Magic Spice (soup curry) is the most famous. Worth a kid-friendly lunch.</div></div>
+      <div class="tip-card"><div class="tip-label">Bookela & Reload</div><div class="tip-text">Two relatively new developments around the station with small indie shops, cafes, and food — clean modern Tokyo right next to the old alleys.</div></div>
+      <div class="tip-card"><div class="tip-label">Walking, not trains</div><div class="tip-text">The best of Shimokita is on foot. Don't try to take taxis or even trains within the neighbourhood — just wander.</div></div>
+      <div class="tip-card"><div class="tip-label">Yokohama option</div><div class="tip-text">If they enjoyed Yokohama with you in December, it's only 30 min from Shibuya — could easily slot in as a half-day return visit.</div></div>
+      <div class="tip-card"><div class="tip-label">Kid breaks</div><div class="tip-text">Ruby and the kids may need downtime after a slow neighbourhood walk. The apartment, Inokashira Park, and Yoyogi Park are all good for running around.</div></div>
+      <div class="tip-card"><div class="tip-label">Same neighbourhoods, different time</div><div class="tip-text">Yanaka, Kiyosumi-Shirakawa, and Kuramae are all worth a half-day if the Duongs want to see what you've been recommending elsewhere.</div></div>
     </div>
   </div>
 
