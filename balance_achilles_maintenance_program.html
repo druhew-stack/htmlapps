@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balance + Achilles — Maintenance Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f1e8;
+    --bg-alt: #ebe5d6;
+    --ink: #1a1815;
+    --ink-soft: #4a4640;
+    --ink-mute: #8a847a;
+    --rule: #d9d2c0;
+    --accent: #b8421f;
+    --accent-soft: #d96a47;
+    --accent-bg: #f4e4dc;
+    --accent2: #2d5a3f;
+    --accent2-bg: #e2ebe4;
+    --paper: #fdfaf3;
+    --rest: #b89a3f;
+    --rest-bg: #f3edd8;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--sans);
+    line-height: 1.5; min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184,66,31,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(45,90,63,0.04) 0%, transparent 40%);
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+  .header { margin-bottom: 32px; border-bottom: 1px solid var(--rule); padding-bottom: 32px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  h1 {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 5.5vw, 52px);
+    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 16px; font-variation-settings: 'opsz' 144;
+  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .subtitle { font-size: 16px; color: var(--ink-soft); max-width: 560px; line-height: 1.6; }
+  .physio-note {
+    margin-top: 24px; padding: 14px 18px; background: var(--accent2-bg);
+    border-left: 3px solid var(--accent2); border-radius: 2px; font-size: 13px;
+    color: var(--ink-soft); line-height: 1.55;
+  }
+  .physio-note strong { color: var(--accent2); font-weight: 600; }
+
+  /* Tabs */
+  .tabs {
+    display: flex; gap: 0; margin-bottom: 32px; border: 1px solid var(--rule);
+    background: var(--paper); border-radius: 2px; overflow: hidden;
+  }
+  .tab {
+    flex: 1; padding: 16px 14px; background: transparent; border: none;
+    border-right: 1px solid var(--rule); font-family: var(--serif); font-size: 16px;
+    font-style: italic; color: var(--ink-soft); cursor: pointer; transition: all 0.2s ease;
+  }
+  .tab:last-child { border-right: none; }
+  .tab:hover { background: var(--bg-alt); color: var(--ink); }
+  .tab.active { background: var(--ink); color: var(--paper); }
+
+  .panel { display: none; animation: fadeIn 0.3s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .panel-intro {
+    font-family: var(--serif); font-size: 22px; font-weight: 400; line-height: 1.3;
+    margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .panel-intro em { font-style: italic; color: var(--accent); }
+  .panel-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 28px; max-width: 580px; line-height: 1.6; }
+
+  /* Weekly schedule */
+  .week-grid { display: flex; flex-direction: column; gap: 10px; }
+  .day {
+    display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center;
+    padding: 18px 22px; background: var(--paper); border: 1px solid var(--rule);
+    border-radius: 2px; border-left: 3px solid var(--rule);
+  }
+  .day.load { border-left-color: var(--accent); }
+  .day.balance { border-left-color: var(--accent2); }
+  .day.rest { border-left-color: var(--rest); }
+  .day.free { opacity: 0.72; }
+  .day-name {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); font-weight: 500;
+  }
+  .day-name .sub { display:block; font-size: 10px; color: var(--ink-mute); letter-spacing: 0.05em; margin-top: 3px; text-transform: none; font-family: var(--sans); }
+  .day-task { display: flex; align-items: center; gap: 12px; }
+  .day-pill {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 2px; white-space: nowrap;
+  }
+  .day-pill.load { background: var(--accent-bg); color: var(--accent); }
+  .day-pill.balance { background: var(--accent2-bg); color: var(--accent2); }
+  .day-pill.rest { background: var(--rest-bg); color: #7a6420; }
+  .day-desc { font-size: 13.5px; color: var(--ink-soft); }
+  .day-desc .other { color: var(--ink-mute); font-size: 12.5px; }
+
+  /* Session sections */
+  .sections { display: flex; flex-direction: column; gap: 12px; }
+  .section {
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 2px;
+    overflow: hidden; transition: all 0.2s ease; border-left: 3px solid var(--rule);
+  }
+  .section.type-tendon { border-left-color: var(--accent); }
+  .section.type-balance { border-left-color: var(--accent2); }
+  .section.type-shared { border-left-color: var(--ink-mute); }
+  .section-header {
+    padding: 18px 24px; display: grid; grid-template-columns: 44px 1fr auto auto;
+    gap: 18px; align-items: center; cursor: pointer; user-select: none;
+  }
+  .section-num { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--accent); line-height: 1; }
+  .section-num::before { content: '0'; color: var(--ink-mute); }
+  .type-balance .section-num { color: var(--accent2); }
+  .type-shared .section-num { color: var(--ink); }
+  .section-title { font-family: var(--serif); font-size: 19px; font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 3px; }
+  .section-purpose { font-size: 12.5px; color: var(--ink-mute); line-height: 1.4; }
+  .section-time {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-soft);
+    background: var(--bg-alt); padding: 4px 10px; border-radius: 2px; white-space: nowrap;
+  }
+  .section-toggle { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: var(--ink-mute); transition: transform 0.2s ease; }
+  .section.expanded .section-toggle { transform: rotate(45deg); color: var(--accent); }
+  .section-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .section.expanded .section-body { max-height: 900px; }
+  .section-body-inner { padding: 0 24px 22px 86px; border-top: 1px dashed var(--rule); padding-top: 18px; }
+  .exercise { display: grid; grid-template-columns: auto 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px dotted var(--rule); }
+  .exercise:last-child { border-bottom: none; }
+  .exercise-mark { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; padding-top: 3px; min-width: 22px; }
+  .type-balance .exercise-mark { color: var(--accent2); }
+  .exercise-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; color: var(--ink); }
+  .exercise-detail { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+  .exercise-detail .spec {
+    font-family: var(--mono); background: var(--accent-bg); color: var(--accent);
+    padding: 1px 6px; border-radius: 2px; font-size: 11px; font-weight: 500; margin-right: 4px; display: inline-block;
+  }
+  .type-balance .exercise-detail .spec { background: var(--accent2-bg); color: var(--accent2); }
+  .exercise-tip { font-size: 12px; color: var(--ink-mute); font-style: italic; margin-top: 6px; line-height: 1.5; }
+  .exercise-new {
+    display: inline-block; font-family: var(--mono); font-size: 8px; letter-spacing: 0.12em;
+    background: var(--accent2); color: var(--paper); padding: 2px 5px; border-radius: 2px;
+    margin-left: 8px; vertical-align: middle; position: relative; top: -1px;
+  }
+  .exercise-changed {
+    display: inline-block; font-family: var(--mono); font-size: 8px; letter-spacing: 0.12em;
+    background: var(--accent); color: var(--paper); padding: 2px 5px; border-radius: 2px;
+    margin-left: 8px; vertical-align: middle; position: relative; top: -1px;
+  }
+
+  /* Rules */
+  .rules { display: flex; flex-direction: column; gap: 14px; }
+  .rule {
+    display: grid; grid-template-columns: 36px 1fr; gap: 18px; padding: 18px 22px;
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 2px;
+  }
+  .rule-num { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 500; }
+  .rule-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .rule-text { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+  .footer-note { margin-top: 32px; text-align: center; font-size: 12px; color: var(--ink-mute); font-style: italic; }
+
+  @media (max-width: 640px) {
+    .container { padding: 32px 20px 60px; }
+    .tabs { flex-wrap: wrap; }
+    .tab { flex: 1 1 50%; border-bottom: 1px solid var(--rule); font-size: 14px; padding: 14px 10px; }
+    .day { grid-template-columns: 1fr; gap: 10px; }
+    .section-header { grid-template-columns: 32px 1fr auto; gap: 12px; padding: 16px; }
+    .section-toggle { display: none; }
+    .section-body-inner { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="eyebrow">Maintenance Program</div>
+    <h1>Balance &amp; Achilles,<br><em>holding the line.</em></h1>
+    <p class="subtitle">Your ongoing maintenance — Achilles loading three days a week, SLEC maintenance on the lighter days. Cadence unchanged; only the loading-day exercises are updated per your physio.</p>
+    <div class="physio-note">
+      <strong>Physio adjustments applied to loading days.</strong> Lighter weight, higher reps (to 20) on the calf work. Two exercises added: <strong>glute bridges</strong> and <strong>anterior tibialis raises</strong>. Schedule and frequency unchanged — loading stays Mon / Wed / Fri.
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="sched">Weekly Schedule</button>
+    <button class="tab" data-tab="load">Loading Day</button>
+    <button class="tab" data-tab="slec">SLEC Day</button>
+    <button class="tab" data-tab="rules">Rules</button>
+  </nav>
+
+  <!-- WEEKLY SCHEDULE -->
+  <div class="panel active" id="sched">
+    <div class="panel-intro">Your week at a <em>glance.</em></div>
+    <div class="panel-sub">Achilles loading lands Mon / Wed / Fri — a rest day between each so the tendon can remodel. SLEC maintenance slots onto the lighter days. Your cycling, strength, parkrun and ride sessions sit alongside, unchanged.</div>
+    <div class="week-grid">
+      <div class="day load">
+        <div class="day-name">Monday<span class="sub">training rest day</span></div>
+        <div class="day-task"><span class="day-pill load">Loading</span><span class="day-desc">Achilles loading circuit. <span class="other">Warm up extra well — tendon is stiffest today.</span></span></div>
+      </div>
+      <div class="day balance">
+        <div class="day-name">Tuesday</div>
+        <div class="day-task"><span class="day-pill balance">SLEC</span><span class="day-desc">Balance maintenance. <span class="other">+ midday indoor cycling</span></span></div>
+      </div>
+      <div class="day load">
+        <div class="day-name">Wednesday</div>
+        <div class="day-task"><span class="day-pill load">Loading</span><span class="day-desc">Achilles loading circuit. <span class="other">+ midday strength</span></span></div>
+      </div>
+      <div class="day balance">
+        <div class="day-name">Thursday</div>
+        <div class="day-task"><span class="day-pill balance">SLEC</span><span class="day-desc">Balance maintenance. <span class="other">+ midday indoor cycling</span></span></div>
+      </div>
+      <div class="day load">
+        <div class="day-name">Friday</div>
+        <div class="day-task"><span class="day-pill load">Loading</span><span class="day-desc">Achilles loading circuit. <span class="other">+ midday strength</span></span></div>
+      </div>
+      <div class="day free">
+        <div class="day-name">Saturday</div>
+        <div class="day-task"><span class="day-pill rest">Free</span><span class="day-desc"><span class="other">parkrun 5km, 8am — no morning routine</span></span></div>
+      </div>
+      <div class="day balance">
+        <div class="day-name">Sunday<span class="sub">optional</span></div>
+        <div class="day-task"><span class="day-pill balance">SLEC</span><span class="day-desc">Optional balance maintenance. <span class="other">+ morning group ride</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING DAY -->
+  <div class="panel" id="load">
+    <div class="panel-intro">Loading day — <em>Mon / Wed / Fri.</em></div>
+    <div class="panel-sub">Collagen + vitamin C 30–60 min before. Always warm up first, always train the left leg first. Lighter weight, higher reps now: <strong>7kg or less</strong> on the standing calf raise and tib-ant raises, <strong>~18kg</strong> on the seated soleus. The work is in controlled reps to 20, not heavy load.</div>
+    <div class="sections">
+
+      <div class="section type-shared expanded">
+        <div class="section-header"><div class="section-num">1</div>
+          <div><div class="section-title">Warm up the tendon</div><div class="section-purpose">Never load cold — especially Monday</div></div>
+          <div class="section-time">2 min</div><div class="section-toggle">+</div></div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div><div class="exercise-name">Ankle circles + calf pumps + knee-to-wall</div><div class="exercise-detail"><span class="spec">~2 min</span> circles 20 each way, pumps 20, knee-to-wall 10 per side</div></div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-tendon expanded">
+        <div class="section-header"><div class="section-num">2</div>
+          <div><div class="section-title">Standing single-leg calf raise</div><div class="section-purpose">Gastrocnemius — off the step, full range</div></div>
+          <div class="section-time">3 min</div><div class="section-toggle">+</div></div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div><div class="exercise-name">SL calf raise on step <span class="exercise-changed">UPDATED</span></div><div class="exercise-detail"><span class="spec">3 × up to 20 each leg</span><span class="spec">7kg or less</span> dumbbell</div><div class="exercise-tip">Physio target is 7kg or lighter with the higher reps — you're at 9kg now, so drop a notch toward 7kg. Build to 20 controlled reps. Left leg first. Two-to-one assist on the left if needed for the final reps (press up on both, lower slowly on the left).</div></div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-tendon expanded">
+        <div class="section-header"><div class="section-num">3</div>
+          <div><div class="section-title">Seated soleus raise</div><div class="section-purpose">Soleus — bent knee, on the yoga block</div></div>
+          <div class="section-time">3 min</div><div class="section-toggle">+</div></div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div><div class="exercise-name">Seated dumbbell soleus raise <span class="exercise-changed">UPDATED</span></div><div class="exercise-detail"><span class="spec">3 × up to 20 per leg</span><span class="spec">~18kg</span> dumbbell on knee</div><div class="exercise-tip">You're at 21kg now — drop to ~18kg and build to 20 reps. Yoga block for full range, knee bent ~90°. Heavier than the standing raise is fine: the bent knee changes the leverage, so the soleus tolerates more load than the gastroc here.</div></div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-tendon expanded">
+        <div class="section-header"><div class="section-num">4</div>
+          <div><div class="section-title">Anterior tibialis raise <span class="exercise-new">NEW</span></div><div class="section-purpose">Foot over the bench edge — full-range dorsiflexion</div></div>
+          <div class="section-time">2 min</div><div class="section-toggle">+</div></div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div><div class="exercise-name">Kettlebell tib-ant raise</div><div class="exercise-detail"><span class="spec">3 × 20 per leg</span><span class="spec">7kg or less</span> hooked over the foot</div><div class="exercise-tip">Setup (per physio): leg supported flat along a bench with the foot hanging off the edge. Hook the kettlebell over the foot, then pump the foot up and down — one full up-and-down is a rep. The overhanging foot gives full range the floor would otherwise block. 7kg or lighter; the shin fatigues fast, so it'll be plenty.</div></div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-tendon expanded">
+        <div class="section-header"><div class="section-num">5</div>
+          <div><div class="section-title">Glute bridge <span class="exercise-new">NEW</span></div><div class="section-purpose">Hip extension — bodyweight, progress by leverage</div></div>
+          <div class="section-time">2 min</div><div class="section-toggle">+</div></div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div><div class="exercise-name">Double-leg glute bridge</div><div class="exercise-detail"><span class="spec">3 × 20</span> bodyweight — squeeze 1s at the top</div><div class="exercise-tip">On your back, feet flat, drive through the heels, lift hips to a straight line shoulder-to-knee. Squeeze the glutes — don't arch the lower back.</div><div class="exercise-tip"><strong>Progress by leverage, not weight.</strong> Keep bodyweight here — it's an accessory, and your Wed/Fri strength sessions already load glutes directly. When 3×20 feels easy, step up to <strong>single-leg</strong> (one foot planted, other leg extended, hips level) before reaching for any load. Only add a dumbbell/plate if you've outgrown single-leg — and check with your physio first, since it changes the loading-day demand.</div></div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-shared expanded">
+        <div class="section-header"><div class="section-num">6</div>
+          <div><div class="section-title">Cool down</div><div class="section-purpose">Static stretch both heads of the calf</div></div>
+          <div class="section-time">1 min</div><div class="section-toggle">+</div></div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div><div class="exercise-name">Calf stretch — straight leg + bent knee</div><div class="exercise-detail"><span class="spec">30s each position</span> per side</div></div></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLEC DAY -->
+  <div class="panel" id="slec">
+    <div class="panel-intro">SLEC day — <em>Tue / Thu / opt Sun.</em></div>
+    <div class="panel-sub">Short and frequent. No collagen needed, no heavy warm-up — this is balance maintenance, not tendon loading. Extra set on the left to keep the asymmetry from widening.</div>
+    <div class="sections">
+
+      <div class="section type-balance expanded">
+        <div class="section-header"><div class="section-num">1</div>
+          <div><div class="section-title"><span style="font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;background:var(--accent2-bg);color:var(--accent2);padding:2px 6px;border-radius:2px;margin-right:8px;position:relative;top:-2px;">SLEC</span>Eyes-closed holds</div><div class="section-purpose">Hold the gains from your four-week program</div></div>
+          <div class="section-time">3 min</div><div class="section-toggle">+</div></div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div><div class="exercise-name">Single-leg stand, eyes closed</div><div class="exercise-detail"><span class="spec">30s time-on-task × 2</span> per leg — near a wall</div><div class="exercise-tip">Time-on-task, not one unbroken hold. Wobble out, reset, re-lift until the 30s is up. The corrections before each wobble are the training stimulus.</div></div></div>
+          <div class="exercise"><div class="exercise-mark">B</div><div><div class="exercise-name">Extra set — left leg</div><div class="exercise-detail"><span class="spec">+1 set, 30s</span> left only</div><div class="exercise-tip">Left is the lagging side across both balance and strength — the extra set helps close the ~6s gap you measured.</div></div></div>
+        </div></div>
+      </div>
+
+      <div class="section type-balance expanded">
+        <div class="section-header"><div class="section-num">2</div>
+          <div><div class="section-title">Optional progression</div><div class="section-purpose">If holds feel solid — add one challenge</div></div>
+          <div class="section-time">1 min</div><div class="section-toggle">+</div></div>
+        <div class="section-body"><div class="section-body-inner">
+          <div class="exercise"><div class="exercise-mark">A</div><div><div class="exercise-name">Add a layer — pick one</div><div class="exercise-detail">slow head turns · stand on a folded towel/cushion · slow arm reaches</div><div class="exercise-tip">Keep the same 30s. Don't extend the time — raise the difficulty instead. Only if the plain eyes-closed hold has become comfortable.</div></div></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RULES -->
+  <div class="panel" id="rules">
+    <div class="panel-intro">The rules that <em>don't change.</em></div>
+    <div class="panel-sub">These carry across from your original program. The physio's update changed the loading-day exercises, not these principles.</div>
+    <div class="rules">
+      <div class="rule"><div class="rule-num">01</div><div><div class="rule-title">Left leg first, always</div><div class="rule-text">The lagging side leads — on the calf raises, the soleus raises, the glute bridges, and the balance work. It gets the extra balance set too.</div></div></div>
+      <div class="rule"><div class="rule-num">02</div><div><div class="rule-title">The 24-hour stiffness check is the gate</div><div class="rule-text">Judge each session by how the tendon feels the next morning. Stiffer than usual = too much; ease the dose. This gate decides any change, not the calendar.</div></div></div>
+      <div class="rule"><div class="rule-num">03</div><div><div class="rule-title">Reps over load, per physio</div><div class="rule-text">Lighter weight, build to 20 controlled reps. Don't chase the old heavy loads. If 20 feels genuinely easy on both legs, check with her before adding weight.</div></div></div>
+      <div class="rule"><div class="rule-num">04</div><div><div class="rule-title">Warm up before loading, not before SLEC</div><div class="rule-text">Loading days always start with the tendon warm-up — especially Monday after the rest day. SLEC days need no heavy warm-up.</div></div></div>
+      <div class="rule"><div class="rule-num">05</div><div><div class="rule-title">Collagen on loading days only</div><div class="rule-text">~15g hydrolysed collagen + vitamin C, 30–60 min before the loading session. Not before SLEC, not on pure cycling days.</div></div></div>
+      <div class="rule"><div class="rule-num">06</div><div><div class="rule-title">Discomfort fine, sharp pain isn't</div><div class="rule-text">A low-grade ache during loading is normal. Sharp pain, or pain lingering past 24 hours, means ease off and check in with her.</div></div></div>
+    </div>
+  </div>
+
+  <p class="footer-note">Maintenance cadence and rules carried over from your existing program. Physio update applied to loading-day exercises only.</p>
+</div>
+
+<script>
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+  document.querySelectorAll('.section-header').forEach(header => {
+    header.addEventListener('click', () => { header.parentElement.classList.toggle('expanded'); });
+  });
+</script>
+<script defer src="./_nav.js"></script>
+</body>
+</html>
